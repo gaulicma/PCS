@@ -3,6 +3,7 @@ import bs4
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
+
 product_keyword = input ('what do you want to search')
 #grab the url
 my_url = 'http://www.shop.muncha.com/Search.aspx?MID=1&q=' + product_keyword
