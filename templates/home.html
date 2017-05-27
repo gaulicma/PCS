@@ -5,13 +5,15 @@
         <h1>WELCOME TO PCS</h1>
         <br>
         <p class="lead">What do you need?</p>
-        <form>
+        <form action = "{{url_for('search')}}" method = "POST">
   <br>
   <input type="text" class="input-large search-query" name="Product"><br>
   
-</form>
+
 <br>
-        <p><a class="btn btn-lg btn-success" role="button" href = "/search">Search </a></p>
+	<input type="submit" value = "Search">
+        <!--<p><a class="btn btn-lg btn-success">Search </a></p>-->
+        </form>
 </div>
 
 {% endblock %}
