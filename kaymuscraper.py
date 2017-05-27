@@ -19,7 +19,7 @@ def KaymuScraper(product_keyword):
 
 	containeres = page_soup.findAll("div",{"class":"small-3 productItem no-shrink mvs"})# grabs content inside div class small-3 productItem..
 
-	filename ='Products.csv'
+	filename ='kaymu.csv'
 	f = open(filename,"w")
 	headers = "Name, Price \n"
 	for container in containeres:
