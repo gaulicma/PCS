@@ -1,11 +1,14 @@
+
+from __main__ import *
+
 import bs4
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import re
 
 
-def KaymuScraper():
-	product_keyword = input('enter the name of the product')
+def KaymuScraper(product_keyword):
+	#product_keyword = input('enter the name of the product')
 	my_url = 'http://www.kaymu.com.np/catalog/?q='+product_keyword
 	# opening up connection and grabbing The page
 	uClient = uReq(my_url)
