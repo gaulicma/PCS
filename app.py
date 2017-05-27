@@ -11,6 +11,8 @@ import requests
 
 
 from kaymuscraper import KaymuScraper
+from munchaScraper import MunchaScraper
+from sastodeal import SastoDealScraper
 
 app = Flask(__name__)
 
@@ -36,6 +38,9 @@ def search():
 	product_keyword = request.form['Product']
 	print(product_keyword)
 	KaymuScraper(product_keyword)
+	MunchaScraper(product_keyword)
+	SastoDealScraper(product_keyword)
+
 	return render_template('search.html')
 	
 
