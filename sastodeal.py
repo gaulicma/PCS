@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup as soup
 def SastoDealScraper(product_keyword):
 
 	print('SASTODEAL\n\n\n')
-	my_url = 'https://www.sastodeal.com/search?q=' + product_keyword + '&SearchSastodeal=Search'
+	my_url = 'https://www.sastodeal.com/sastodeal/faces/search.jsp?searchkey=' + product_keyword #changed the pattern
 
 	#opening up connection,grabbing the page
 	uClient = uReq(my_url)
@@ -21,13 +21,13 @@ def SastoDealScraper(product_keyword):
 	headers = 'product_name , price , link\n'
 	f.write(headers)
 
-
-	containers = page_soup.findAll("div",{"class":"pure-u-1-3 product_box item_box size-hover"})
+	#changed xpaths
+	containers = page_soup.findAll("section",{"class":"categoryProduct category-product categoryDetailDiv"})
 
 	for contain in containers:
-		title_contain = contain.findAll("div", {"class":"one_product_title"})
-		name = title_contain[0].text.strip()
-		title_contain[0].text.strip()
+		title_contain = contain.findAll("div", {"class":"prod_detail"})
+		name = title_contain.text
+		#title_contain[0].text.strip()
 
 
 		price = contain.span.text
@@ -42,3 +42,4 @@ def SastoDealScraper(product_keyword):
 		f.write(name.replace(',' , '')+',' + price.replace(',' , '')+ ',' + link+ '\n')
 	f.close()
 	 
+SastoDealScraper("Earphones")
