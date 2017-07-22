@@ -5,14 +5,42 @@ import bs4
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
+import sqlite3
+
+
+
 
 
 def MunchaScraper(product_keyword):
-	#product_keyword = input ('what do you want to search')
 
+	conn = sqlite3.connect('test.db')
+	cur = conn.cursor()
+	#created the table once and then commented it out
+	cur.execute('''CREATE TABLE IF NOT EXISTS muncha
+	(
+	link CHAR(255) NOT NULL, 
+	name CHAR(255) PRIMARY KEY,
+	price REAL,
+	image CHAR(255)
+	)''')
+	cur.execute('DELETE FROM muncha')
+
+
+	#product_keyword = input ('what do you want to search')
+	#conn.open()
 	print('MUNCHA \n\n\n')
-	#grab the url
-	my_url = 'http://www.shop.muncha.com/Search.aspx?MID=1&q=' + product_keyword
+
+	
+	key= product_keyword.split()
+	lenkey= len(key)
+	added=key[0];
+	for i in range(1,lenkey):
+		added= added+'+'+key[i]
+	
+	
+	
+	my_url = 'http://www.shop.muncha.com/Search.aspx?MID=1&q='+added
+
 
 	uClient = uReq(my_url)
 	page_html= uClient.read()
@@ -26,25 +54,39 @@ def MunchaScraper(product_keyword):
 	containers = page_soup.findAll("div",{"class":"panel panel-default"})
 	 
 
-	filename = 'muncha.csv'
+	'''filename = 'muncha.csv'
 	f = open(filename, 'w')
 	headers =  'link, product_name, prooduct_price \n'
-	#f.write(headers)
+	#f.write(headers)'''
 
 
 	#grabs individual product
 	for contain in containers:
+		
 		 link = contain.a['href']
+		 img_src = contain.img['src']
 
 		 name = contain.div.a.img['alt']
 		 
 		 price_container = contain.findAll("div",{"class":"price-desc"})
-		 price = price_container[0].text.strip()
+		 price = price_container[0].text.strip()# why is this here
+		 try:
+		 	present, past = price.split()
+		 except:
+		 	present = price
 
 
-		 print('link '+ link)
-		 print('name '+ name)
-		 print('price ' + price)
-	 
-		 f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
-	f.close()
+
+		
+		 cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image)
+		 VALUES(?,?,?,?)""", [link, name, present, img_src]);
+		 print('link '+ link + '\n')
+		 print('image ' + img_src+ '\n')
+		 print('name '+ name+ '\n')
+		 print('price ' + present+ '\n')
+		 conn.commit()
+		 print ("records added")
+		 #conn.close() 
+		 #f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
+	conn.close()# use this for the last website
+#MunchaScraper("dress")
