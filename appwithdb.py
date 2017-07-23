@@ -33,10 +33,7 @@ def init_db():
 		)
 	'''
 	cur.execute(_create_sql)
-	db_conn.commit()	
-
-
-
+	db_conn.commit()
 
 
 @app.route('/')
