@@ -1,6 +1,49 @@
-{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name ="viewport" content="width=device-width">
+	<meta name ="description" content="Compare produts among various Nepali E-commercial sites">
+	<meta name = "keywords" content= "E-commercial, Shop Online, Online shops">
+	<meta name = "authors" content = "Suravi Regmi, Seema Gauli, Shradha Neupane">
+	<title>PRODUCT COMPARISON SYSTEM</title>
+	<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div id ="branding">
+			<h1><span class = "highlight">Product </span>Comparision System</h1>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="main.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="another.html">FAQ</a></li>					
+				</ul>			
+			</nav>
+		</div>
+	</header>
 
-{% block body%}
-<h1>List of products</h1>
+	<h1>List of products</h1>
+	<div class = "containers">
+	{% for row in rows %}
+	<ul>
 
-{% endblock %}
+		<li><a href = "{{row["link"]}}"><img src ="{{row["image"]}}"></a></li>
+		<li>{{row["name"]}}</li>
+		<li>{{row["price"]}}</li>
+	</ul>
+	{% endfor %}
+	<a href = "/"> Go back to home page</a>
+	</div>
+	
+
+
+
+
+	<footer>
+		<p>Prodcut Comparison System, Copyright &copy; 2017</p>		
+	</footer>
+
+</body>
+</html>

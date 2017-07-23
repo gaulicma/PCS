@@ -4,6 +4,8 @@ import bs4
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import requests
+import sqlite3
+
 
 #import mySQL 
 #
@@ -33,16 +35,23 @@ def contact():
 #def search():
 	#return render_template('search.html', details = Details)
 
-@app.route('/search', methods = ['POST'])
+@app.route('/search', methods = ['POST','GET'])
 def search():
+	
 	product_keyword = request.form['Product']
 	print(product_keyword)
 	#KaymuScraper(product_keyword)
 	MunchaScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
+	con = sqlite3.connect("test.db")
+	con.row_factory = sqlite3.Row
 
-	return render_template('search.html')
+	cur = con.cursor()
+	cur.execute("select * from muncha")
+
+	rows = cur.fetchall();
+
+	return render_template('search.html', rows = rows)
 	
-
 if __name__ =='__main__':
 	app.run(debug=True)

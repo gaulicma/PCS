@@ -1,20 +1,66 @@
-{% extends 'layout.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name ="viewport" content="width=device-width">
+	<meta name ="description" content="Compare produts among various Nepali E-commercial sites">
+	<meta name = "keywords" content= "E-commercial, Shop Online, Online shops">
+	<meta name = "authors" content = "Suravi Regmi, Seema Gauli, Shradha Neupane">
+	<title>PRODUCT COMPARISON SYSTEM | WELCOME</title>
+	<link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+	<header>
+		<div class="container">
+			<div id ="branding">
+			<h1><span class = "highlight">Product </span>Comparision System</h1>
+			</div>
+			<nav>
+				<ul>
+					<li class = "current"><a href="home.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="another.html">FAQ</a></li>					
+				</ul>			
+			</nav>
+		</div>
+	</header>
+	<section id="showcase">
+		<div class = "comtainer">
+			<h1>Product Comparision across different Nepali E-commerce sites </h1>
+			<p>Tired of looking everywhere and not finding anything?</p>
+		</div>
+	</section>
+	<section id="user_search">
+	<div class = "container">
+		<h1>Enter Your Search</h1>
+		<form action = "{{url_for('search')}}" method = "POST">
+			<input type="text" name="Product">">
+			<button type="submit" class="button_1">Search</button>
+			<!-- Enter the shit here-->
+		</form>
+	</div>	
+	</section>
+	<section id ="boxes">
+		<div class="container">
+			<div class="box">
+				<img src="./img/download.jpg">
+				<h3>Reliable</h3>
+				<p>WE so reliable</p>
+			</div>
+			<div class="box">
+				<img src="./img/images.jpeg">
+				<h3>Good Value</h3>
+				<p>WE so reliable</p>
+			</div>
+			<div class="box">
+				<img src="./img/download.jpg">
+				<h3>Easier Browsing</h3>
+				<p>WE so reliable</p>
+			</div>
+		</div>
+	</section>
+	<footer>
+		<p>Prodcut Comparison System, Copyright &copy; 2017</p>		
+	</footer>
 
-{% block body %}
-<div class="jumbotron text-center">
-        <h2>WELCOME TO </h2><br>
-        <h1>Product Comparison System</h1>
-        <br>
-        <p class="lead">What do you need?</p>
-        <form action = "{{url_for('search')}}" method = "POST">
-  <br>
-  <input type="text" class="input-large search-query" name="Product"><br>
-  
-
-<br>
-	<input type="submit" value = "Search">
-        <!--<p><a class="btn btn-lg btn-success">Search </a></p>-->
-        </form>
-</div>
-
-{% endblock %}
+</body>
+</html>
