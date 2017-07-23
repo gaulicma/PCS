@@ -73,7 +73,7 @@ header nav{
 }
 
 
-header .highlight, header .current a{
+header .highlight, header .current a, ul#individual_items .hilight{
 	color:#e8491d;
 	font-weight: bold;	
 }
@@ -86,7 +86,7 @@ header a:hover{
 /*showcase*/
 #showcase{
 	min-height: 500px;
-	background:url('../img/showcase.jpg') no-repeat;
+	background:url("./showcase.jpg") no-repeat;
 	text-align: center;
 	color: #000000;
 	padding: 01px;
@@ -127,6 +127,31 @@ header a:hover{
 	width:500px;
 
 }
+
+#search_search{
+	padding:5px;
+	color:#ffffff;
+	background:#354242;
+}
+
+#search_search h1{
+	float:left;
+	font-size:25px;
+}
+
+#search_search form{
+	float:right;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+#search-search input{
+	padding:10px;
+	height:20px;
+	width:100px;
+}
+
+
+
 
 
 /*Boxeex*/
@@ -170,6 +195,31 @@ ul#questions li{
 	border: #cccccc solid 1px;
 	margin-bottom: 5px;
 	background: #e6e6e6;
+}
+
+/*search*/
+ul#individual_items{
+	/*border:1px solid;*/
+	background :#e6e6e6;
+	padding:10px;
+	margin:5px;
+	width: 20%;
+	align-items: center;
+
+}
+
+ul#individual_items li{
+	list-style: none;
+}
+
+
+
+ul#individual_items img{
+	
+	min-height:auto;
+	min-width:100%;
+	max-height:400px;
+
 }
 
 footer{
