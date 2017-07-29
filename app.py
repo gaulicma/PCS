@@ -22,14 +22,21 @@ app = Flask(__name__)
 def index():
 	return render_template('home.html')
 
-@app.route('/about')
+@app.route('/home.html')
+def home():
+	return render_template('home.html')
+
+
+@app.route('/about.html')
 def about():
 	return render_template('about.html')
 
-@app.route('/contact')
+@app.route('/contact.html')
 def contact():
 	return render_template('contact.html')
-
+@app.route('/another.html')
+def another():
+	return render_template('another.html')
 
 #@app.route('/search/<string>')
 #def search():

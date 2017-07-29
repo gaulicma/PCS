@@ -16,26 +16,41 @@
 			</div>
 			<nav>
 				<ul>
-					<li><a href="main.html">Home</a></li>
+					<li><a href="home.html">Home</a></li>
 					<li><a href="about.html">About</a></li>
 					<li><a href="another.html">FAQ</a></li>					
 				</ul>			
 			</nav>
 		</div>
 	</header>
+	<section id="search_search">
+	<div class = "container">
+		<h1>Search  Again</h1>
+		<form action = "{{url_for('search')}}" method = "POST">
+			<input type="text" name="Product">
+			<button type="submit" class="button_1">Search</button>
+			<!-- Enter the shit here-->
+		</form>
+	</div>	
+	</section>
+
 
 	<h1>List of products</h1>
-	<div class = "containers">
-	{% for row in rows %}
-	<ul>
-
-		<li><a href = "{{row["link"]}}"><img src ="{{row["image"]}}"></a></li>
-		<li>{{row["name"]}}</li>
-		<li>{{row["price"]}}</li>
-	</ul>
-	{% endfor %}
-	<a href = "/"> Go back to home page</a>
-	</div>
+	<section id = "boxes">
+		<div class = "containers">
+			<h3> Muncha<h3>
+			{% for row in rows %}
+			 <ul id = "individual_items">
+				<li><a href = "{{row["link"]}}"><img src ="{{row["image"]}}"></a></li>
+				<li>{{row["name"]}}</li>
+				<li><span class = "hilight">{{row["price"]}}</span></li>
+				<li><a href = "{{row["link"]}}">
+				<button type = "button" class = "button_1">Buy</button></a></li>
+			</ul>
+			{% endfor %}
+			<a href = "/"> Go back to home page</a>
+		</div>
+	</section>
 	
 
 
