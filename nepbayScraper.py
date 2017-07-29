@@ -33,7 +33,7 @@ def NepbayScraper(product_keyword):
 
 	my_url='https://nepbay.com/shopping/search/auctions/?search%5Bkeyword%5D='+added+'&abstractauction_form_posted=search_auction'
 
-	#opening up connection, grab the page
+	#opening up connection, grab the pageconta
 	uClient = uReq(my_url)
 	page_html = uClient.read()
 	uClient.close()

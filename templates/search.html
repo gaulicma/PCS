@@ -65,16 +65,26 @@
 				</ul>
 				{%endfor%}
 			</div>
+
+			<div class = "site-box">
+				<h3> Sastodeal</h3>
+				{% for row in rowsSD %}
+				<ul id = "individual_items">
+					<li><a href ="{{row["link_SD"]}}"><img src = "{{row["image_SD"]}}"></a></li>
+					<li>{{row["name_SD"]}}</li>
+					<li><span class = "hilight">{{row["price_SD"]}}</span></li>
+					<li><a href = "{{row["link_SD"]}}">
+					<button type = "button" class = "button_1">Buy</button></a></li>
+				</ul>
+				{%endfor%}
+			</div>
+
+			<!--add other sites here-->
+
+
 		</div>
 
 	</section>
-
-	
-
-	
-
-
-
 
 	<footer>
 		<p>Prodcut Comparison System, Copyright &copy; 2017</p>		
