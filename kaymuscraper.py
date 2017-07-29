@@ -25,7 +25,7 @@ def KaymuScraper(product_keyword):
 
 	filename ='kaymu.csv'
 	f = open(filename,"w")
-	headers = "Name, Price \n"
+	headers = "Name, Price \n" 
 	for container in containeres:
 
 		name = container.a.div.img["alt"]

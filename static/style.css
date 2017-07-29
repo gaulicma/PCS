@@ -157,7 +157,7 @@ header a:hover{
 /*Boxeex*/
 
 #boxes{
-	margin-top: :20px;
+	margin-top: 20px;
 }
 
 #boxes .box{
@@ -171,6 +171,15 @@ header a:hover{
 	width:90px;
 }
 
+
+/*search page boxes */
+#site-boxes{
+	margin-top:20px;
+}
+
+#site-boxes .box{
+	float:right;
+}
 /*sidebar*/
 aside#sidebar{
 	float:right;
