@@ -3,10 +3,31 @@ from __main__ import *
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 
+import sqlite3
+
 def SastoDealScraper(product_keyword):
 
+	conn = sqlite3.connect('test.db')
+	cur = conn.cursor()
+
+	cur.execute('''CREATE TABLE IF NOT EXISTS sastodeal
+	(
+	link_SD CHAR(255) NOT NULL, 
+	name_SD CHAR(255) PRIMARY KEY,
+	price_SD REAL,
+	image_SD CHAR(255)
+	)''')
+	cur.execute('DELETE FROM sastodeal')
+
+	key= product_keyword.split()
+	lenkey= len(key)
+	added=key[0];
+	for i in range(1,lenkey):
+		added= added+'+'+key[i]
+	
+
 	print('SASTODEAL\n\n\n')
-	my_url = 'https://www.sastodeal.com/sastodeal/faces/search.jsp?searchkey=' + product_keyword #changed the pattern
+	my_url = 'https://www.sastodeal.com/sastodeal/faces/search.jsp?searchkey=' + added #changed the pattern
 
 	#opening up connection,grabbing the page
 	uClient = uReq(my_url)
@@ -16,30 +37,23 @@ def SastoDealScraper(product_keyword):
 	# html passing
 	page_soup = soup(page_html, "html.parser")
 
-	filename = 'sasto.csv'
-	f=open(filename, 'w')
-	headers = 'product_name , price , link\n'
-	f.write(headers)
-
 	#changed xpaths
-	containers = page_soup.findAll("section",{"class":"categoryProduct category-product categoryDetailDiv"})
 
-	for contain in containers:
-		title_contain = contain.findAll("div", {"class":"prod_detail"})
-		name = title_contain.text
-		#title_contain[0].text.strip()
+	containers = page_soup.findAll("section",{"class":"categoryProduct category-product categorytDetailDiv "})
 
 
-		price = contain.span.text
+	for container in containers:
 
-		link = contain.a['href']
+		image_SD = container.a.img["src"]
+		link_SD = 'http://www.sastodeal.com'+container.div.a["href"]
+		price_SD = container.span.text.replace('?','Rs.')
+		title_container =  title_container = container.findAll('a',{"class":'title'})
+		name_SD = title_container[0].text.strip()
 
-		
-		print("product_name:" + name)
-		print("price" + price)
-		print("link" + link)
-
-		f.write(name.replace(',' , '')+',' + price.replace(',' , '')+ ',' + link+ '\n')
-	f.close()
-	 
-SastoDealScraper("Earphones")
+		cur.execute("""INSERT OR IGNORE INTO sastodeal(link_SD,name_SD,price_SD,image_SD)
+		VALUES(?,?,?,?)""",[link_SD,name_SD,price_SD,image_SD]);
+		conn.commit()
+		print("records added")
+	conn.close()
+			 
+#SastoDealScraper("Earphones")

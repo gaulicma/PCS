@@ -14,7 +14,9 @@ import sqlite3
 
 #from kaymuscraper import KaymuScraper
 from munchaScraper import MunchaScraper
-#from sastodeal import SastoDealScraper
+from sastodeal import SastoDealScraper
+from nepbayScraper import NepbayScraper
+
 
 app = Flask(__name__)
 
@@ -48,8 +50,12 @@ def search():
 	product_keyword = request.form['Product']
 	print(product_keyword)
 	#KaymuScraper(product_keyword)
-	MunchaScraper(product_keyword)
+	#MunchaScraper(product_keyword)
+	#NepbayScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
+	
+
+	#make the comparison algorithm here
 	con = sqlite3.connect("test.db")
 	con.row_factory = sqlite3.Row
 
@@ -58,7 +64,13 @@ def search():
 
 	rows = cur.fetchall();
 
-	return render_template('search.html', rows = rows)
+	cur.execute("select *from NepBay")
+
+	rowsNB = cur.fetchall();
+	cur.execute("select * from sastodeal")
+	rowsSD = cur.fetchall();
+
+	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD)
 	
 if __name__ =='__main__':
 	app.run(debug=True)
