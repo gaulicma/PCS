@@ -14,6 +14,7 @@ import sqlite3
 def MunchaScraper(product_keyword):
 
 	conn = sqlite3.connect('test.db')
+	
 	cur = conn.cursor()
 	#created the table once and then commented it out
 	cur.execute('''CREATE TABLE IF NOT EXISTS muncha
@@ -76,16 +77,18 @@ def MunchaScraper(product_keyword):
 		 	present = price
 
 
-
-		
-		 cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image)
-		 VALUES(?,?,?,?)""", [link, name, present, img_src]);
-		 print('link '+ link + '\n')
-		 print('image ' + img_src+ '\n')
-		 print('name '+ name+ '\n')
-		 print('price ' + present+ '\n')
-		 conn.commit()
-		 print ("records added")
+		 s = name.replace('-',' ')
+		 r = s.split()
+		 for i in r:
+		 	if i==product_keyword:			
+				 cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image)
+				 VALUES(?,?,?,?)""", [link, name, present, img_src]);
+				 '''print('link '+ link + '\n')
+				 print('image ' + img_src+ '\n')
+				 print('name '+ name+ '\n')
+				 print('price ' + present+ '\n')'''
+				 conn.commit()
+				 print ("records added")
 		 #conn.close() 
 		 #f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
 	conn.close()# use this for the last website
