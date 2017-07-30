@@ -187,6 +187,7 @@ header a:hover{
 /*search page boxes */
 #site-boxes{
 	margin-top:20px;
+	background-color: #F0F8FF;
    
 	
 }
@@ -208,12 +209,14 @@ header a:hover{
 	 position:relative;
 	 margin-left: 10px;
 	  margin-right: 10px;
+	  text-align: center;
 
 }
 #site-boxes .site-box2{
 	border-right:1px;
 	 width:22%;
 	 height:700px;
+	 text-align: center;
 	  padding:10px;
 	  float:left;
 	  margin-left: 10px;
@@ -221,6 +224,7 @@ header a:hover{
 	   position:relative;
 }
 #site-boxes .site-box3{
+	text-align: center;
 	 border-right:1px;
 	 width:22%;
 	 height:700px;
@@ -232,17 +236,17 @@ header a:hover{
 
 }
 #site-boxes .site-box4{
+	text-align: center;
+
 	 border-right:1px;
 	 width:22%;
 	 height:700px;
 	  padding:10px;
 	  float:left;
 	   position:relative;
-<<<<<<< HEAD
+
 	   margin-left: 10px;
 	  margin-right: 10px;
-=======
->>>>>>> cd48f9147c4d71ab5f9e44b7e0ac6e99a3334030
 	}
 
 
