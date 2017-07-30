@@ -16,6 +16,7 @@ import sqlite3
 from munchaScraper import MunchaScraper
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
+from meroshoppingScraper import MeroShoppingScraper
 
 
 app = Flask(__name__)
@@ -53,6 +54,7 @@ def search():
 	#MunchaScraper(product_keyword)
 	#NepbayScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
+	MeroShoppingScraper(product_keyword)
 	
 
 	#make the comparison algorithm here
@@ -70,7 +72,12 @@ def search():
 	cur.execute("select * from sastodeal")
 	rowsSD = cur.fetchall();
 
-	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD)
+	cur.execute("select * from meroshopping")
+	rowsMS = cur.fetchall();
+	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD, rowsMS = rowsMS)
+
+	#do for mero shopping
+	
 	
 if __name__ =='__main__':
 	app.run(debug=True)
