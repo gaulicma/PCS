@@ -37,9 +37,29 @@ def about():
 @app.route('/contact.html')
 def contact():
 	return render_template('contact.html')
-@app.route('/another.html')
+
+@app.route('/another.html', methods=['POST', 'GET'])
 def another():
-	return render_template('another.html')
+	try:
+		if request.methods == POST:
+			c_name = request.form['contacter_name']
+			c_email = request.form['contacter_email']
+			c_message=request.form['contacter_message']
+
+			conn = sqlite3.connect("contacter.db")
+			curr= conn.cursor()
+			curr.execute('''CREATE TABLE IF NOT EXISTS contacter
+			(
+			name CHAR(255) NOT NULL, 
+			email CHAR(255) NOT NULL,
+			message CHAR(255) NOT NULL
+			)''')
+			curr.execute("""INSERT OR IGNORE INTO contacter(name, email, message)
+						 VALUES(?,?,?,?)""", [c_name, c_email, c_message]);
+			conn.commit()
+			conn.close()
+	except:
+		return render_template('another.html')
 
 #@app.route('/search/<string>')
 #def search():
