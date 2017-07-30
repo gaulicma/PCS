@@ -28,8 +28,8 @@
 		<h1>Search  Again</h1>
 		<form action = "{{url_for('search')}}" method = "POST">
 			<input type="text" name="Product">
-			<button type="submit" class="button_1">Search</button>
-			<!-- Enter the shit here-->
+			<button type="submit" class="button_2">Search</button>
+			
 		</form>
 	</div>	
 	</section>
@@ -39,7 +39,7 @@
 	<section id = "site-boxes">
 
 		<div class = "containers">
-			<div class = "site-box">
+			<div class = "site-box1">
 			<h3> Muncha</h3>
 				{% for row in rows %}
 				 <ul id = "individual_items">
@@ -47,13 +47,12 @@
 					<li>{{row["name"]}}</li>
 					<li><span class = "hilight">{{row["price"]}}</span></li>
 					<li><a href = "{{row["link"]}}">
-					<button type = "button" class = "button_1">Buy</button></a></li>
+					<button type = "button" class = "button_2">Buy</button></a></li>
 				</ul>
 				{% endfor %}
-				<a href = "/"> Go back to home page</a>
 			</div>
 
-			<div class = "site-box">
+			<div class = "site-box2">
 				<h3> Nepbay</h3>
 				{% for row in rowsNB %}
 				<ul id = "individual_items">
@@ -61,12 +60,12 @@
 					<li>{{row["name_NB"]}}</li>
 					<li><span class = "hilight">{{row["price_NB"]}}</span></li>
 					<li><a href = "{{row["link_NB"]}}">
-					<button type = "button" class = "button_1">Buy</button></a></li>
+					<button type = "button" class = "button_2">Buy</button></a></li>
 				</ul>
 				{%endfor%}
 			</div>
 
-			<div class = "site-box">
+			<div class = "site-box3">
 				<h3> Sastodeal</h3>
 				{% for row in rowsSD %}
 				<ul id = "individual_items">
@@ -74,12 +73,12 @@
 					<li>{{row["name_SD"]}}</li>
 					<li><span class = "hilight">{{row["price_SD"]}}</span></li>
 					<li><a href = "{{row["link_SD"]}}">
-					<button type = "button" class = "button_1">Buy</button></a></li>
+					<button type = "button" class = "button_2">Buy</button></a></li>
 				</ul>
 				{%endfor%}
 			</div>
 
-			<div class = "site-box">
+			<div class = "site-box4">
 				<h3> MeroShopping</h3>
 				{% for row in rowsMS %}
 				<ul id = "individual_items">
@@ -87,7 +86,7 @@
 					<li>{{row["name_MS"]}}</li>
 					<li><span class = "hilight">{{row["price_MS"]}}</span></li>
 					<li><a href = "{{row["link_MS"]}}">
-					<button type = "button" class = "button_1">Buy</button></a></li>
+					<button type = "button" class = "button_2">Buy</button></a></li>
 				</ul>
 				{%endfor%}
 			</div>
@@ -100,7 +99,7 @@
 	</section>
 
 	<footer>
-		<p>Prodcut Comparison System, Copyright &copy; 2017</p>		
+		<p>Product Comparison System, Copyright &copy; 2017</p>		
 	</footer>
 
 </body>
