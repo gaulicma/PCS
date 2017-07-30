@@ -54,7 +54,7 @@ def search():
 	#MunchaScraper(product_keyword)
 	#NepbayScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
-	MeroShoppingScraper(product_keyword)
+	#MeroShoppingScraper(product_keyword)
 	
 
 	#make the comparison algorithm here
