@@ -40,7 +40,7 @@ def MunchaScraper(product_keyword):
 	
 	
 	
-	my_url = 'http://www.shop.muncha.com/Search.aspx?MID=1&q='+added
+	my_url = 'https://muncha.com.np/Product/Search?CategoryID=0&SearchKeyword='+added
 
 
 	uClient = uReq(my_url)
@@ -52,7 +52,7 @@ def MunchaScraper(product_keyword):
 	page_soup = soup(page_html,"html.parser")
 
 	#finds all the lines with class as panel panel-default
-	containers = page_soup.findAll("div",{"class":"panel panel-default"})
+	containers = page_soup.findAll("div",{"class":"col-xs-6 col-md-3 ng-scope"})
 	 
 
 	'''filename = 'muncha.csv'
@@ -77,12 +77,12 @@ def MunchaScraper(product_keyword):
 		 	present = price
 
 
-		 s = name.replace('-',' ')
+		 s_name = name.replace('-',' ')
 		 r = s.split()
 		 for i in r:
 		 	if i==product_keyword:			
 				 cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image)
-				 VALUES(?,?,?,?)""", [link, name, present, img_src]);
+				 VALUES(?,?,?,?)""", [link, s_name, present, img_src]);
 				 '''print('link '+ link + '\n')
 				 print('image ' + img_src+ '\n')
 				 print('name '+ name+ '\n')
@@ -92,4 +92,4 @@ def MunchaScraper(product_keyword):
 		 #conn.close() 
 		 #f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
 	conn.close()# use this for the last website
-#MunchaScraper("dress")
+#MunchaScraper("Samsung")

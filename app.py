@@ -17,6 +17,7 @@ from munchaScraper import MunchaScraper
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
 from meroshoppingScraper import MeroShoppingScraper
+from Muncha import MunchaDynamicScraper
 
 
 app = Flask(__name__)
@@ -71,7 +72,7 @@ def search():
 	product_keyword = request.form['Product']
 	print(product_keyword)
 	#KaymuScraper(product_keyword)
-	#MunchaScraper(product_keyword)
+	MunchaDynamicScraper(product_keyword)
 	#NepbayScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
 	#MeroShoppingScraper(product_keyword)
