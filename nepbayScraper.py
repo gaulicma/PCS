@@ -2,6 +2,7 @@
 
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
+import re
 
 from __main__ import *
 import sqlite3
@@ -18,7 +19,8 @@ def NepbayScraper(product_keyword):
 		link_NB CHAR(255) NOT NULL,
 		name_NB CHAR(255) PRIMARY KEY,
 		price_NB REAL,
-		image_NB CHAR(255)
+		image_NB CHAR(255),
+		p_NB CHAR(255)
 		)''')
 	cur.execute('DELETE FROM NepBay')
 
@@ -51,8 +53,15 @@ def NepbayScraper(product_keyword):
 		price_container = container.findAll("div",{"class":"search-price"})
 		price_NB = price_container[0].text.strip().replace("रु","Rs")
 
-		cur.execute("""INSERT OR IGNORE INTO NepBay(link_NB,name_NB,price_NB,image_NB)
-		VALUES(?,?,?,?)""",[link_NB,name_NB,price_NB,image_NB]);
+		p_NB= re.split(r'[^\w]',name_NB, re.I| re.M)
+		p_NB= ''.join(p_NB)
+		p_NB= str.lower(p_NB)
+		p_NB= re.split(r'[^\w]',p_NB, re.I| re.M)
+		p_NB= ''.join(p_NB)
+
+
+		cur.execute("""INSERT OR IGNORE INTO NepBay(link_NB,name_NB,price_NB,image_NB,p_NB)
+		VALUES(?,?,?,?,?)""",[link_NB,name_NB,price_NB,image_NB,p_NB]);
 		conn.commit()
 		print("records added")
 	conn.close()

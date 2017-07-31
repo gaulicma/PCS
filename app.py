@@ -71,10 +71,10 @@ def search():
 	product_keyword = request.form['Product']
 	print(product_keyword)
 	#KaymuScraper(product_keyword)
-	#MunchaScraper(product_keyword)
-	#NepbayScraper(product_keyword)
-	#SastoDealScraper(product_keyword)
-	#MeroShoppingScraper(product_keyword)
+	MunchaScraper(product_keyword)
+	NepbayScraper(product_keyword)
+	SastoDealScraper(product_keyword)
+	MeroShoppingScraper(product_keyword)
 	
 
 	#make the comparison algorithm here

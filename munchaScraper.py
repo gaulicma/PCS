@@ -4,6 +4,7 @@ import bs4
 
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
+import re
 
 import sqlite3
 
@@ -22,7 +23,8 @@ def MunchaScraper(product_keyword):
 	link CHAR(255) NOT NULL, 
 	name CHAR(255) PRIMARY KEY,
 	price REAL,
-	image CHAR(255)
+	image CHAR(255),
+	parameter CHAR(255)
 	)''')
 	cur.execute('DELETE FROM muncha')
 
@@ -64,32 +66,39 @@ def MunchaScraper(product_keyword):
 	#grabs individual product
 	for contain in containers:
 		
-		 link = contain.a['href']
-		 img_src = contain.img['src']
+		link = contain.a['href']
+		img_src = contain.img['src']
 
-		 name = contain.div.a.img['alt']
-		 
-		 price_container = contain.findAll("div",{"class":"price-desc"})
-		 price = price_container[0].text.strip()# why is this here
-		 try:
-		 	present, past = price.split()
-		 except:
-		 	present = price
+		name = contain.div.a.img['alt']
+
+		price_container = contain.findAll("div",{"class":"price-desc"})
+		price = price_container[0].text.strip()# why is this here
+		try:
+			present, past = price.split()
+		except:
+			present = price
+
+		parameter= re.split(r'[^\w]',name, re.I| re.M)
+		parameter= ''.join(parameter)
+		parameter= str.lower(parameter)
+		parameter= re.split(r'[^\w]',parameter, re.I| re.M)
+		parameter= ''.join(parameter)
+			
 
 
-		 s = name.replace('-',' ')
-		 r = s.split()
-		 for i in r:
-		 	if i==product_keyword:			
-				 cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image)
-				 VALUES(?,?,?,?)""", [link, name, present, img_src]);
-				 '''print('link '+ link + '\n')
-				 print('image ' + img_src+ '\n')
-				 print('name '+ name+ '\n')
-				 print('price ' + present+ '\n')'''
-				 conn.commit()
-				 print ("records added")
-		 #conn.close() 
-		 #f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
-	conn.close()# use this for the last website
-#MunchaScraper("dress")
+		s = name.replace('-',' ')
+		r = s.split()
+		for i in r:
+			if i==product_keyword:			
+			 cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image, parameter)
+			 VALUES(?,?,?,?,?)""", [link, name, present, img_src,parameter]);
+			 '''print('link '+ link + '\n')
+			 print('image ' + img_src+ '\n')
+			 print('name '+ name+ '\n')
+			 print('price ' + present+ '\n')'''
+			 conn.commit()
+			 print ("records added")
+		#conn.close() 
+		#f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
+		conn.close()# use this for the last website
+		#MunchaScraper("dress")
