@@ -37,13 +37,33 @@ def about():
 @app.route('/contact.html')
 def contact():
 	return render_template('contact.html')
-@app.route('/another.html')
-def another():
-	return render_template('another.html')
 
-#@app.route('/search/<string>')
-#def search():
-	#return render_template('search.html', details = Details)
+@app.route('/another.html', methods=['POST', 'GET'])
+def another():
+	
+	if request.method == "POST":
+		c_name = request.form['contacter_name']
+		c_email = request.form['contacter_email']
+		c_message=request.form['contacter_message']
+
+		conn = sqlite3.connect("test.db")
+		curr= conn.cursor()
+		curr.execute('''CREATE TABLE IF NOT EXISTS contacter
+		(
+		name CHAR(255) NOT NULL, 
+		email CHAR(255) NOT NULL,
+		message CHAR(255) NOT NULL
+		)''')
+		if c_name:
+			curr.execute('''INSERT INTO contacter(name,email,message)
+				VALUES(?,?,?)''', [c_name,c_email,c_message]);
+			conn.commit()
+			return redirect(url_for('thanks'))
+	return render_template('another.html')
+			
+@app.route('/thanks')
+def thanks():
+	return render_template('thanks.html')
 
 @app.route('/search', methods = ['POST','GET'])
 def search():
@@ -51,10 +71,10 @@ def search():
 	product_keyword = request.form['Product']
 	print(product_keyword)
 	#KaymuScraper(product_keyword)
-	#MunchaScraper(product_keyword)
-	#NepbayScraper(product_keyword)
-	#SastoDealScraper(product_keyword)
-	#MeroShoppingScraper(product_keyword)
+	MunchaScraper(product_keyword)
+	NepbayScraper(product_keyword)
+	SastoDealScraper(product_keyword)
+	MeroShoppingScraper(product_keyword)
 	
 
 	#make the comparison algorithm here
@@ -77,7 +97,31 @@ def search():
 	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD, rowsMS = rowsMS)
 
 	#do for mero shopping
-	
+
+'''@app.route('/message', methods = ['GET','POST'])
+def message():
+	if request.method == 'POST':
+		conn = sqlite3.connect('test.db')
+		cur = conn.cursor()
+		#cur.execute(CREATE TABLE IF NOT EXISTS message(
+		name CHAR(50),
+		email CHAR(255),
+		message CHAR(255)
+		)
+		name = request.form['contacter_name'] 
+		email = request.form['contacter_email']
+		message = request.form['contacter_message']
+
+		if name():
+			cur.execute(INSERT INTO message(name,emai,message)
+				VALUES(?,?,?), [name,email,message]);
+			cur.commit()
+			return redirect(url_for('thank.html'))
+	return render_template('another.html')
+
+'''
+
+
 	
 if __name__ =='__main__':
 	app.run(debug=True)
