@@ -2,14 +2,11 @@ import sys
 from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QUrl
 from PyQt4.QtWebKit import QWebPage
-
 import sqlite3
-
 from __main__ import *
-
-
 from bs4 import BeautifulSoup as soup
 import urllib.request
+import re
 
 def MunchaDynamicScraper(product_keyword):
 	conn = sqlite3.connect('test.db')
@@ -21,7 +18,8 @@ def MunchaDynamicScraper(product_keyword):
 	link CHAR(255) NOT NULL, 
 	name CHAR(255) PRIMARY KEY,
 	price REAL,
-	image CHAR(255)
+	image CHAR(255),
+	parameter CHAR(255)
 	)''')
 	cur.execute('DELETE FROM muncha')
 
@@ -62,9 +60,18 @@ def MunchaDynamicScraper(product_keyword):
 		price = container.span.text
 		link = 'https://www.muncha.com' + container.a["href"]
 		image = container.img["src"]
+		a= name
+		parameter=re.sub(r'\(.+?\)\a*', '', a)
 
-		cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image)
-		VALUES(?,?,?,?)""", [link, name, price, image]);
+		parameter= re.split(r'[^\w]',parameter, re.I| re.M)
+		parameter= ''.join(parameter)
+		parameter= str.lower(parameter)
+		parameter= re.split(r'[^\w]',parameter, re.I| re.M)
+		parameter= ''.join(parameter)
+
+
+		cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image, parameter)
+		VALUES(?,?,?,?,?)""", [link, name, price, image, parameter]);
 				
 		conn.commit()
 		print ("records added")
