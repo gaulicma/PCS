@@ -9,15 +9,19 @@ import re
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 #from kaymuscraper import KaymuScraper
 from munchaScraper import MunchaScraper
 >>>>>>> suravi-master
+=======
+>>>>>>> 1c4eecebe0309bf6aa00f13e90b06424254d2b7f
 
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 #from kaymuscraper import KaymuScraper
@@ -26,6 +30,13 @@ from munchaScraper import MunchaScraper
 =======
 
 >>>>>>> suravi-master
+=======
+
+
+
+
+
+>>>>>>> 1c4eecebe0309bf6aa00f13e90b06424254d2b7f
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
 <<<<<<< HEAD
@@ -88,6 +99,7 @@ def search():
 	
 	product_keyword = request.form['Product']
 	print(product_keyword)
+<<<<<<< HEAD
 	#KaymuScraper(product_keyword)
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -145,6 +157,15 @@ def search():
 =======
 
 >>>>>>> suravi-master
+=======
+
+	#MunchaDynamicScraper(product_keyword)
+	#NepbayScraper(product_keyword)
+	#SastoDealScraper(product_keyword)
+	#MeroShoppingDynamicScraper(product_keyword)
+
+
+>>>>>>> 1c4eecebe0309bf6aa00f13e90b06424254d2b7f
 	
 >>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
 
@@ -175,6 +196,8 @@ def search():
 >>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
 
 
+
+
 @app.route('/compare', methods = ['POST','GET'])
 def compare():
 	conn  = sqlite3.connect("test.db")
@@ -182,8 +205,7 @@ def compare():
 	cur = conn.cursor()
 
 	cur.execute('''select * from muncha natural join NepBay 
-	where muncha.name = NepBay.name_NB''')
-
+	where muncha.parameter = NepBay.p_NB''')
 	rows = cur.fetchall();
 
 	return render_template('compare.html', rows = rows)

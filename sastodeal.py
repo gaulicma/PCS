@@ -43,26 +43,7 @@ def SastoDealScraper(product_keyword):
 
 	containers = page_soup.findAll("section",{"class":"categoryProduct category-product categorytDetailDiv "})
   
-	for container in containers:
-
-		image_SD = container.a.img["src"]
-		link_SD = 'http://www.sastodeal.com'+container.div.a["href"]
-		price_SD = container.span.text.replace('?','Rs.')
-		title_container =  title_container = container.findAll('a',{"class":'title'})
-		name_SD = title_container[0].text.strip()
-		parameter_SD= re.split(r'[^\w]',name_SD, re.I| re.M)
-		parameter_SD= ''.join(parameter_SD)
-		parameter_SD= str.lower(parameter_SD)
-		parameter_SD= re.split(r'[^\w]',parameter_SD, re.I| re.M)
-		parameter_SD= ''.join(parameter_SD)
-
-
-		cur.execute("""INSERT OR IGNORE INTO sastodeal(link_SD,name_SD,price_SD,image_SD,parameter_SD)
-		VALUES(?,?,?,?,?)""",[link_SD,name_SD,price_SD,image_SD,parameter_SD]);
-		conn.commit()
-		print("records added")
-	containers = page_soup.findAll("section",{"class":"categoryProduct category-product categorytDetailDiv rightbox  "})
-  
+	
 	for container in containers:
 
 		image_SD = container.a.img["src"]
