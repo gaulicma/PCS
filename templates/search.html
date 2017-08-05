@@ -82,13 +82,13 @@
 			</div>
 
 			<div class = "site-box4">
-				<h3> MeroShopping</h3>
-				{% for row in rowsMS %}
+				<h3> Bhatbhateni</h3>
+				{% for row in rowsBB %}
 				<ul id = "individual_items">
-					<li><a href ="{{row["link_MS"]}}"><img src = "{{row["image_MS"]}}"></a></li>
-					<li>{{row["name_MS"]}}</li>
-					<li><span class = "hilight">{{row["price_MS"]}}</span></li>
-					<li><a href = "{{row["link_MS"]}}">
+					<li><a href ="{{row["link_BB"]}}"><img src = "{{row["image_BB"]}}"></a></li>
+					<li>{{row["name_BB"]}}</li>
+					<li><span class = "hilight">{{row["price_BB"]}}</span></li>
+					<li><a href = "{{row["link_BB"]}}">
 					<button type = "button" class = "button_2">Buy</button></a></li>
 				</ul>
 				{%endfor%}

@@ -10,8 +10,9 @@ import sqlite3
 from munchaScraper import MunchaScraper
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
-from meroshoppingScraper import MeroShoppingScraper
+#from meroshoppingScraper import MeroShoppingScraper
 from Muncha import MunchaDynamicScraper
+from bhatbhateni import BhatbhateniScraper
 
 
 app = Flask(__name__)
@@ -67,17 +68,14 @@ def search():
 	print(product_keyword)
 	#KaymuScraper(product_keyword)
 
-	#MunchaDynamicScraper(product_keyword)
-	#NepbayScraper(product_keyword)
-	#SastoDealScraper(product_keyword)
-	#MeroShoppingScraper(product_keyword)
+	MunchaDynamicScraper(product_keyword)
 	
 	#MunchaScraper(product_keyword)
-	#NepbayScraper(product_keyword)
-	#SastoDealScraper(product_keyword)
+	NepbayScraper(product_keyword)
+	SastoDealScraper(product_keyword)
 	#MeroShoppingScraper(product_keyword)
 
-	
+	BhatbhateniScraper(product_keyword)
 
 	#make the comparison algorithm here
 	conn = sqlite3.connect("test.db")
@@ -95,9 +93,9 @@ def search():
 	cur.execute("select * from sastodeal")
 	rowsSD = cur.fetchall();
 
-	cur.execute("select * from meroshopping")
-	rowsMS = cur.fetchall();
-	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD, rowsMS = rowsMS)
+	cur.execute("select * from bhatbhateni")
+	rowsBB = cur.fetchall();
+	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD, rowsBB = rowsBB)
 
 
 @app.route('/compare', methods = ['POST','GET'])
