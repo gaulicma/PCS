@@ -66,10 +66,13 @@ def MunchaScraper(product_keyword):
 	#grabs individual product
 	for contain in containers:
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 <<<<<<< HEAD
 =======
 >>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
+=======
+>>>>>>> suravi-master
 		link = contain.a['href']
 		img_src = contain.img['src']
 
@@ -99,9 +102,12 @@ def MunchaScraper(product_keyword):
 		#f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
 	conn.close()# use this for the last website
 <<<<<<< HEAD
+<<<<<<< HEAD
 #MunchaScraper("Samsung")
 >>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
 =======
+=======
+>>>>>>> suravi-master
 	#MunchaScraper("Samsung")
 
 	link = contain.a['href']
@@ -141,4 +147,7 @@ def MunchaScraper(product_keyword):
 	conn.close()# use this for the last website
 	#MunchaScraper("dress")
 
+<<<<<<< HEAD
 >>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
+=======
+>>>>>>> suravi-master
