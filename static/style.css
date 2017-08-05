@@ -22,6 +22,8 @@ ul{
 	padding: 0;
 }
 
+
+
 .button_1{
 	height:50px;
 	background:#e8491d;
@@ -100,6 +102,29 @@ header a:hover{
 }
 
 
+.press{
+	position: absolute;
+
+	
+}
+
+.press a:link, a:visited {
+    background-color:#e8491d ;
+    color: #ffffff;
+    padding: 14px 20px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+}
+
+.press a:hover, a:active {
+    background-color:#35424a;
+}
+.press li{
+	float: left;
+	display: inline;
+	padding: 0px 0px 0px 0px;
+}
 
 /*showcase*/
 #showcase{
@@ -131,6 +156,8 @@ header a:hover{
 #user_search h1{
 	float:left;
 	font-size: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 #user_search form{
@@ -155,6 +182,9 @@ header a:hover{
 #search_search h1{
 	float:left;
 	font-size:25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 25px;
 }
 
 #search_search form{
@@ -192,23 +222,52 @@ header a:hover{
 
 
 /*search page boxes */
-#site-boxes{
-	margin-top:20px;
-	background-color: #F0F8FF;
+.site-boxes{
+	align-content: center;
+	margin-top:70px;
+	padding-top: 20px;
+	height:1000px;
+	overflow-y: scroll;
+	position: relative;
+   padding-bottom: 60px;
    
 	
 }
+.site-boxes1{
+	align-content: center;
+	margin-top:70px;
+	padding-top: 20px;
+	height:1000px;
+	overflow-y: scroll;
+	position: relative;
+   padding-bottom: 60px;
+   
+	
+}
+.site-boxes2{
+	align-content: center;
+	margin-top:70px;
+	padding-top: 20px;
+	height:1000px;
+	overflow-y: scroll;
+
+	position: relative;
+   padding-bottom: 60px;
+	
+
+}
 
 
-#site-boxes .box{
+.site-boxes .box{
 	float:right;
-	width:30%;
+	width:22%;
 	padding:10px;
 	text-align: center;
 	background-color: #F0F8FF;
+	padding-bottom: 2000px;
 	
 }
-#site-boxes .site-box1{
+.site-boxes .site-box1{
 	 border-right:1px;
 	  padding:10px; 
 	 width:22%; 
@@ -220,7 +279,7 @@ header a:hover{
 	  text-align: center;
 
 }
-#site-boxes .site-box2{
+.site-boxes .site-box2{
 	border-right:1px;
 	 width:22%;
 	 height:700px;
@@ -230,7 +289,7 @@ header a:hover{
 	  margin-left: 10px;
 	  margin-right: 10px;
 	   }
-#site-boxes .site-box3{
+.site-boxes .site-box3{
 	text-align: center;
 	 border-right:1px;
 	 width:22%;
@@ -242,7 +301,7 @@ header a:hover{
 	  margin-right: 10px;
 
 }
-#site-boxes .site-box4{
+.site-boxes .site-box4{
 	text-align: center;
 
 	 border-right:1px;
@@ -256,6 +315,30 @@ header a:hover{
 	  margin-right: 10px;
 	}
 
+.site-boxes1 .site-box1{
+	 border-right:1px;
+	  padding:10px; 
+	 width:22%; 
+	 height:700px;
+	 float:left; 
+	
+	 margin-left: 10px;
+	  margin-right: 10px;
+	  text-align: center;
+
+}
+.site-boxes2 .site-box2{
+	 border-right:1px;
+	  padding:10px; 
+	 width:22%; 
+	 height:700px;
+	 float:left; 
+	
+	 margin-left: 10px;
+	  margin-right: 10px;
+	  text-align: center;
+
+}
 /* for comparison page */
 
 
