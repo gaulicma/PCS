@@ -2,12 +2,8 @@ import sys
 from PyQt4.QtGui import QApplication
 from PyQt4.QtCore import QUrl
 from PyQt4.QtWebKit import QWebPage
-
 import sqlite3
-
 from __main__ import *
-
-
 from bs4 import BeautifulSoup as soup
 import urllib.request
 
