@@ -110,25 +110,84 @@ def compare():
 
 	#cur.execute('''select * from muncha natural join NepBay 
 	#where muncha.parameter = NepBay.p_NB''')
+
+	#for all 4
 	cur.execute("""
-		create view if not exists view_table2 as
+		create view if not exists fourSNMB as
+		select * from NepBay natural join muncha natural join bhatbhateni  natural join sastodeal
+ 		where
+ 		NepBay.p_NB = muncha.parameter
+ 		and NepBay.p_NB = bhatbhateni.p_BB
+ 		and muncha.parameter = bhatbhateni.p_BB
+ 		and NepBay.p_NB = sastodeal.parameter_SD
+ 		and muncha.parameter = sastodeal.parameter_SD
+ 		and bhatbhateni.p_BB = sastodeal.parameter_SD""")
+	cur.execute("select * from fourSNMB")
+	rows_all_four = cur.fetchall();
+
+	# for 3
+	cur.execute("""
+		create view if not exists threeNMB as
 		select * from NepBay natural join muncha natural join bhatbhateni
  		where
  		NepBay.p_NB = muncha.parameter
  		and NepBay.p_NB = bhatbhateni.p_BB
  		and muncha.parameter = bhatbhateni.p_BB""")
-	cur.execute("select * from view_table2")
+	cur.execute("select * from threeNMB")
 	rows = cur.fetchall();
 
+	# for muncha and nepbay
 	cur.execute("""
-		create view if not exists view_table4 as
+		create view if not exists twoMN as
 	select * from NepBay natural join muncha
 	where NepBay.p_NB = muncha.parameter""")
-	cur.execute("select * from view_table4")
+	cur.execute("select * from twoMN")
 	rows2 = cur.fetchall();
-	return render_template('compare.html', rows = rows, rows2 = rows2)
-	
 
+	#for nepbay and bhathateni
+	cur.execute("""
+		create view if not exists twoNB as
+		select * from NepBay natural join bhatbhateni
+		where NepBay.p_NB = bhatbhateni.p_BB""")
+	cur.execute("select * from twoNB")
+	rowsNB = cur.fetchall()
+	
+	
+	#for muncha and bhatbheteni
+	cur.execute("""
+		create view if not exists twoMB as
+		select * from muncha natural join bhatbhateni
+		where muncha.parameter = bhatbhateni.p_BB""")
+	cur.execute("select * from twoMB")
+	rowsMB = cur.fetchall()
+
+	#for sastodeal and nepbay
+	cur.execute("""
+		create view if not exists twoSN as
+		select * from sastodeal natural join NepBay
+		where sastodeal.parameter_SD = NepBay.p_NB""")
+	cur.execute("select * from twoSN")
+	rowsSN = cur.fetchall()
+
+	#for sastodeal and muncha
+	cur.execute("""
+		create view if not exists twoSM as
+		select * from sastodeal natural join muncha
+		where sastodeal.parameter_SD = muncha.parameter""")
+	cur.execute("select * from twoSM")
+	rowsSM = cur.fetchall()
+
+	#for sastodeal and bhatbhateni
+	cur.execute("""
+		create view if not exists twoSB as
+		select * from sastodeal natural join bhatbhateni
+		where sastodeal.parameter_SD = bhatbhateni.p_BB""")
+	cur.execute("select * from twoSB")
+	rowsSB = cur.fetchall()
+
+
+
+	return render_template('compare.html', rows_all_four = rows_all_four, rows = rows, rows2 = rows2, rowsNB = rowsNB, rowsMB = rowsMB, rowsSN = rowsSN, rowsSM = rowsSM, rowsSB = rowsSB)
 
 
 if __name__ =='__main__':
