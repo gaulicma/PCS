@@ -53,7 +53,10 @@ def NepbayScraper(product_keyword):
 		price_container = container.findAll("div",{"class":"search-price"})
 		price_NB = price_container[0].text.strip().replace("रु","Rs")
 
-		p_NB= re.split(r'[^\w]',name_NB, re.I| re.M)
+		a= name_NB
+		p_NB=re.sub(r'\(.+?\)\a*', '', a)
+
+		p_NB= re.split(r'[^\w]',p_NB, re.I| re.M)
 		p_NB= ''.join(p_NB)
 		p_NB= str.lower(p_NB)
 		p_NB= re.split(r'[^\w]',p_NB, re.I| re.M)

@@ -5,12 +5,24 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import requests
 import sqlite3
+import re
 
+<<<<<<< HEAD
+
+
+
+
+=======
 #from kaymuscraper import KaymuScraper
 from munchaScraper import MunchaScraper
+>>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
+<<<<<<< HEAD
 #from meroshoppingScraper import MeroShoppingScraper
+=======
+#from meroshopping import MeroShoppingDynamicScraper
+>>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
 from Muncha import MunchaDynamicScraper
 from bhatbhateni import BhatbhateniScraper
 
@@ -67,15 +79,49 @@ def search():
 	product_keyword = request.form['Product']
 	print(product_keyword)
 	#KaymuScraper(product_keyword)
+<<<<<<< HEAD
 
 	MunchaDynamicScraper(product_keyword)
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+#<<<<<<< HEAD
+	MunchaDynamicScraper(product_keyword)
+=======
+<<<<<<< HEAD
+	MunchaScraper(product_keyword)
+>>>>>>> shradhaN-master
+	NepbayScraper(product_keyword)
+	SastoDealScraper(product_keyword)
+	#MeroShoppingDynamicScraper(product_keyword)
+#=======
+=======
+
+>>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
+	#MunchaDynamicScraper(product_keyword)
+	#NepbayScraper(product_keyword)
+	#SastoDealScraper(product_keyword)
+	#MeroShoppingScraper(product_keyword)
+<<<<<<< HEAD
+<<<<<<< HEAD
+#>>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
+=======
+>>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
+>>>>>>> shradhaN-master
+=======
+>>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
 	
 	#MunchaScraper(product_keyword)
 	NepbayScraper(product_keyword)
 	SastoDealScraper(product_keyword)
 	#MeroShoppingScraper(product_keyword)
 
+<<<<<<< HEAD
 	BhatbhateniScraper(product_keyword)
+=======
+>>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
+	
+>>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
 
 	#make the comparison algorithm here
 	conn = sqlite3.connect("test.db")
@@ -93,9 +139,15 @@ def search():
 	cur.execute("select * from sastodeal")
 	rowsSD = cur.fetchall();
 
+<<<<<<< HEAD
 	cur.execute("select * from bhatbhateni")
 	rowsBB = cur.fetchall();
 	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD, rowsBB = rowsBB)
+=======
+	#cur.execute("select * from meroshopping")
+	#rowsMS = cur.fetchall();
+	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD)
+>>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
 
 
 @app.route('/compare', methods = ['POST','GET'])
