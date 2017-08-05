@@ -69,8 +69,13 @@ def search():
 	product_keyword = request.form['Product']
 	print(product_keyword)
 	#KaymuScraper(product_keyword)
+<<<<<<< HEAD
 #<<<<<<< HEAD
 	MunchaDynamicScraper(product_keyword)
+=======
+<<<<<<< HEAD
+	MunchaScraper(product_keyword)
+>>>>>>> shradhaN-master
 	NepbayScraper(product_keyword)
 	SastoDealScraper(product_keyword)
 	#MeroShoppingDynamicScraper(product_keyword)
@@ -79,7 +84,11 @@ def search():
 	#NepbayScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
 	#MeroShoppingScraper(product_keyword)
+<<<<<<< HEAD
 #>>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
+=======
+>>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
+>>>>>>> shradhaN-master
 	
 
 	#make the comparison algorithm here
