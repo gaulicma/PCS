@@ -5,6 +5,7 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import requests
 import sqlite3
+import re
 
 
 
@@ -12,7 +13,7 @@ import sqlite3
 
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
-from meroshopping import MeroShoppingDynamicScraper
+#from meroshopping import MeroShoppingDynamicScraper
 from Muncha import MunchaDynamicScraper
 
 
@@ -72,7 +73,7 @@ def search():
 	MunchaDynamicScraper(product_keyword)
 	NepbayScraper(product_keyword)
 	SastoDealScraper(product_keyword)
-	MeroShoppingDynamicScraper(product_keyword)
+	#MeroShoppingDynamicScraper(product_keyword)
 #=======
 	#MunchaDynamicScraper(product_keyword)
 	#NepbayScraper(product_keyword)
@@ -96,9 +97,9 @@ def search():
 	cur.execute("select * from sastodeal")
 	rowsSD = cur.fetchall();
 
-	cur.execute("select * from meroshopping")
-	rowsMS = cur.fetchall();
-	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD, rowsMS = rowsMS)
+	#cur.execute("select * from meroshopping")
+	#rowsMS = cur.fetchall();
+	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD)
 
 	#do for mero shopping
 
