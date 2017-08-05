@@ -51,9 +51,12 @@ def BhatbhateniScraper(product_keyword):
 		price_BB = container.div.div.div.text.strip()
 		image_BB = container.img["src"]
 		link_BB = container.a["href"]
+
+		a= name_BB
+		p_BB=re.sub(r'\(.+?\)\a*', '', a)
 		
 
-		p_BB= re.split(r'[^\w]',name_BB, re.I| re.M)
+		p_BB= re.split(r'[^\w]',p_BB, re.I| re.M)
 		p_BB= ''.join(p_BB)
 		p_BB= str.lower(p_BB)
 		p_BB= re.split(r'[^\w]',p_BB, re.I| re.M)
