@@ -7,15 +7,15 @@ import requests
 import sqlite3
 import re
 
-<<<<<<< HEAD
 
 
 
 
-=======
-#from kaymuscraper import KaymuScraper
-from munchaScraper import MunchaScraper
->>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
+
+
+
+
+
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
 #from meroshopping import MeroShoppingDynamicScraper
@@ -73,40 +73,13 @@ def search():
 	
 	product_keyword = request.form['Product']
 	print(product_keyword)
-	#KaymuScraper(product_keyword)
-<<<<<<< HEAD
-<<<<<<< HEAD
-#<<<<<<< HEAD
-	MunchaDynamicScraper(product_keyword)
-=======
-<<<<<<< HEAD
-	MunchaScraper(product_keyword)
->>>>>>> shradhaN-master
-	NepbayScraper(product_keyword)
-	SastoDealScraper(product_keyword)
-	#MeroShoppingDynamicScraper(product_keyword)
-#=======
-=======
 
->>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
 	#MunchaDynamicScraper(product_keyword)
 	#NepbayScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
-	#MeroShoppingScraper(product_keyword)
-<<<<<<< HEAD
-<<<<<<< HEAD
-#>>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
-=======
->>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
->>>>>>> shradhaN-master
-=======
-	
-	#MunchaScraper(product_keyword)
-	#NepbayScraper(product_keyword)
-	#SastoDealScraper(product_keyword)
-	#MeroShoppingScraper(product_keyword)
+	#MeroShoppingDynamicScraper(product_keyword)
 
->>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
+
 	
 
 	#make the comparison algorithm here
@@ -130,6 +103,8 @@ def search():
 	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD)
 
 
+
+
 @app.route('/compare', methods = ['POST','GET'])
 def compare():
 	conn  = sqlite3.connect("test.db")
@@ -137,8 +112,7 @@ def compare():
 	cur = conn.cursor()
 
 	cur.execute('''select * from muncha natural join NepBay 
-	where muncha.name = NepBay.name_NB''')
-
+	where muncha.parameter = NepBay.p_NB''')
 	rows = cur.fetchall();
 
 	return render_template('compare.html', rows = rows)
