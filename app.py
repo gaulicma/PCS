@@ -6,11 +6,17 @@ from bs4 import BeautifulSoup as soup
 import requests
 import sqlite3
 
+
 #from kaymuscraper import KaymuScraper
 from munchaScraper import MunchaScraper
+
+
+
+
+
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
-from meroshoppingScraper import MeroShoppingScraper
+from meroshopping import MeroShoppingDynamicScraper
 from Muncha import MunchaDynamicScraper
 
 
@@ -68,6 +74,10 @@ def search():
 	#KaymuScraper(product_keyword)
 
 	#MunchaDynamicScraper(product_keyword)
+	NepbayScraper(product_keyword)
+	#SastoDealScraper(product_keyword)
+	#MeroShoppingDynamicScraper(product_keyword)
+	#MunchaDynamicScraper(product_keyword)
 	#NepbayScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
 	#MeroShoppingScraper(product_keyword)
@@ -76,6 +86,7 @@ def search():
 	#NepbayScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
 	#MeroShoppingScraper(product_keyword)
+
 
 	
 
