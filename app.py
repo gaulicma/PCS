@@ -7,43 +7,14 @@ import requests
 import sqlite3
 import re
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-#from kaymuscraper import KaymuScraper
-from munchaScraper import MunchaScraper
->>>>>>> suravi-master
-=======
->>>>>>> 1c4eecebe0309bf6aa00f13e90b06424254d2b7f
-
-
-
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-#from kaymuscraper import KaymuScraper
-from munchaScraper import MunchaScraper
->>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
-=======
-
->>>>>>> suravi-master
-=======
 
 
 
 
 
->>>>>>> 1c4eecebe0309bf6aa00f13e90b06424254d2b7f
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
-<<<<<<< HEAD
-#from meroshoppingScraper import MeroShoppingScraper
-=======
-#from meroshopping import MeroShoppingDynamicScraper
->>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
+
 from Muncha import MunchaDynamicScraper
 from bhatbhateni import BhatbhateniScraper
 
@@ -99,75 +70,13 @@ def search():
 	
 	product_keyword = request.form['Product']
 	print(product_keyword)
-<<<<<<< HEAD
-	#KaymuScraper(product_keyword)
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-	MunchaDynamicScraper(product_keyword)
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-#<<<<<<< HEAD
-	MunchaDynamicScraper(product_keyword)
-=======
-<<<<<<< HEAD
-	MunchaScraper(product_keyword)
->>>>>>> shradhaN-master
-	NepbayScraper(product_keyword)
-	SastoDealScraper(product_keyword)
-	#MeroShoppingDynamicScraper(product_keyword)
-#=======
-=======
-
->>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
-=======
-
-	#MunchaDynamicScraper(product_keyword)
-	NepbayScraper(product_keyword)
-	#SastoDealScraper(product_keyword)
-	#MeroShoppingDynamicScraper(product_keyword)
->>>>>>> suravi-master
-	#MunchaDynamicScraper(product_keyword)
-	#NepbayScraper(product_keyword)
-	#SastoDealScraper(product_keyword)
-	#MeroShoppingScraper(product_keyword)
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-#>>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
-=======
->>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
->>>>>>> shradhaN-master
-=======
->>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
-=======
->>>>>>> suravi-master
-	
-	#MunchaScraper(product_keyword)
-	NepbayScraper(product_keyword)
-	SastoDealScraper(product_keyword)
-	#MeroShoppingScraper(product_keyword)
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-	BhatbhateniScraper(product_keyword)
-=======
->>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
-=======
-
->>>>>>> suravi-master
-=======
 
 	#MunchaDynamicScraper(product_keyword)
 	#NepbayScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
-	#MeroShoppingDynamicScraper(product_keyword)
+	#BhatbhateniScraper(product_keyword)
 
-
->>>>>>> 1c4eecebe0309bf6aa00f13e90b06424254d2b7f
-	
->>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
 
 	#make the comparison algorithm here
 	conn = sqlite3.connect("test.db")
@@ -185,15 +94,10 @@ def search():
 	cur.execute("select * from sastodeal")
 	rowsSD = cur.fetchall();
 
-<<<<<<< HEAD
+
 	cur.execute("select * from bhatbhateni")
 	rowsBB = cur.fetchall();
 	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD, rowsBB = rowsBB)
-=======
-	#cur.execute("select * from meroshopping")
-	#rowsMS = cur.fetchall();
-	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD)
->>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
 
 
 
@@ -204,12 +108,26 @@ def compare():
 	conn.row_factory = sqlite3.Row
 	cur = conn.cursor()
 
-	cur.execute('''select * from muncha natural join NepBay 
-	where muncha.parameter = NepBay.p_NB''')
+	#cur.execute('''select * from muncha natural join NepBay 
+	#where muncha.parameter = NepBay.p_NB''')
+	cur.execute("""
+		create view if not exists view_table2 as
+		select * from NepBay natural join muncha natural join bhatbhateni
+ 		where
+ 		NepBay.p_NB = muncha.parameter
+ 		and NepBay.p_NB = bhatbhateni.p_BB
+ 		and muncha.parameter = bhatbhateni.p_BB""")
+	cur.execute("select * from view_table2")
 	rows = cur.fetchall();
 
-	return render_template('compare.html', rows = rows)
-
+	cur.execute("""
+		create view if not exists view_table4 as
+	select * from NepBay natural join muncha
+	where NepBay.p_NB = muncha.parameter""")
+	cur.execute("select * from view_table4")
+	rows2 = cur.fetchall();
+	return render_template('compare.html', rows = rows, rows2 = rows2)
+	
 
 
 

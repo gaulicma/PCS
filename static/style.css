@@ -214,7 +214,7 @@ header a:hover{
 	 width:22%; 
 	 height:700px;
 	 float:left; 
-	 position:relative;
+	
 	 margin-left: 10px;
 	  margin-right: 10px;
 	  text-align: center;
@@ -229,8 +229,7 @@ header a:hover{
 	  float:left;
 	  margin-left: 10px;
 	  margin-right: 10px;
-	   position:relative;
-}
+	   }
 #site-boxes .site-box3{
 	text-align: center;
 	 border-right:1px;
@@ -238,7 +237,7 @@ header a:hover{
 	 height:700px;
 	  padding:10px;
 	  float:left;
-	   position:relative;
+
 	   margin-left: 10px;
 	  margin-right: 10px;
 
@@ -251,7 +250,7 @@ header a:hover{
 	 height:700px;
 	  padding:10px;
 	  float:left;
-	   position:relative;
+
 
 	   margin-left: 10px;
 	  margin-right: 10px;
