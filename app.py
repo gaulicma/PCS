@@ -8,14 +8,24 @@ import sqlite3
 import re
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+#from kaymuscraper import KaymuScraper
+from munchaScraper import MunchaScraper
+>>>>>>> suravi-master
 
 
 
 
+<<<<<<< HEAD
 =======
 #from kaymuscraper import KaymuScraper
 from munchaScraper import MunchaScraper
 >>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
+=======
+
+>>>>>>> suravi-master
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
 <<<<<<< HEAD
@@ -80,6 +90,7 @@ def search():
 	print(product_keyword)
 	#KaymuScraper(product_keyword)
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	MunchaDynamicScraper(product_keyword)
 =======
@@ -98,10 +109,18 @@ def search():
 =======
 
 >>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
+=======
+
+	#MunchaDynamicScraper(product_keyword)
+	NepbayScraper(product_keyword)
+	#SastoDealScraper(product_keyword)
+	#MeroShoppingDynamicScraper(product_keyword)
+>>>>>>> suravi-master
 	#MunchaDynamicScraper(product_keyword)
 	#NepbayScraper(product_keyword)
 	#SastoDealScraper(product_keyword)
 	#MeroShoppingScraper(product_keyword)
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 #>>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
@@ -110,6 +129,8 @@ def search():
 >>>>>>> shradhaN-master
 =======
 >>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
+=======
+>>>>>>> suravi-master
 	
 	#MunchaScraper(product_keyword)
 	NepbayScraper(product_keyword)
@@ -117,9 +138,13 @@ def search():
 	#MeroShoppingScraper(product_keyword)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	BhatbhateniScraper(product_keyword)
 =======
 >>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
+=======
+
+>>>>>>> suravi-master
 	
 >>>>>>> de4c27a94385a189442c237cddcf464f83f355c6
 
