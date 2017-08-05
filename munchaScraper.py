@@ -55,7 +55,7 @@ def MunchaScraper(product_keyword):
 
 	#finds all the lines with class as panel panel-default
 	containers = page_soup.findAll("div",{"class":"col-xs-6 col-md-3 ng-scope"})
-	 
+	
 
 	'''filename = 'muncha.csv'
 	f = open(filename, 'w')
@@ -65,13 +65,16 @@ def MunchaScraper(product_keyword):
 
 	#grabs individual product
 	for contain in containers:
+<<<<<<< HEAD
 		
 <<<<<<< HEAD
+=======
+>>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
 		link = contain.a['href']
 		img_src = contain.img['src']
 
 		name = contain.div.a.img['alt']
-
+		
 		price_container = contain.findAll("div",{"class":"price-desc"})
 		price = price_container[0].text.strip()# why is this here
 		try:
@@ -79,48 +82,11 @@ def MunchaScraper(product_keyword):
 		except:
 			present = price
 
-		parameter= re.split(r'[^\w]',name, re.I| re.M)
-		parameter= ''.join(parameter)
-		parameter= str.lower(parameter)
-		parameter= re.split(r'[^\w]',parameter, re.I| re.M)
-		parameter= ''.join(parameter)
-			
 
-
-		s = name.replace('-',' ')
+		s_name = name.replace('-',' ')
 		r = s.split()
 		for i in r:
 			if i==product_keyword:			
-			 cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image, parameter)
-			 VALUES(?,?,?,?,?)""", [link, name, present, img_src,parameter]);
-			 '''print('link '+ link + '\n')
-			 print('image ' + img_src+ '\n')
-			 print('name '+ name+ '\n')
-			 print('price ' + present+ '\n')'''
-			 conn.commit()
-			 print ("records added")
-		#conn.close() 
-		#f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
-		conn.close()# use this for the last website
-		#MunchaScraper("dress")
-=======
-		 link = contain.a['href']
-		 img_src = contain.img['src']
-
-		 name = contain.div.a.img['alt']
-		 
-		 price_container = contain.findAll("div",{"class":"price-desc"})
-		 price = price_container[0].text.strip()# why is this here
-		 try:
-		 	present, past = price.split()
-		 except:
-		 	present = price
-
-
-		 s_name = name.replace('-',' ')
-		 r = s.split()
-		 for i in r:
-		 	if i==product_keyword:			
 				 cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image)
 				 VALUES(?,?,?,?)""", [link, s_name, present, img_src]);
 				 '''print('link '+ link + '\n')
@@ -129,8 +95,50 @@ def MunchaScraper(product_keyword):
 				 print('price ' + present+ '\n')'''
 				 conn.commit()
 				 print ("records added")
-		 #conn.close() 
-		 #f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
+		#conn.close() 
+		#f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
 	conn.close()# use this for the last website
+<<<<<<< HEAD
 #MunchaScraper("Samsung")
 >>>>>>> 219e96c2ce46f61543bbbfb758ec20baf994ef74
+=======
+	#MunchaScraper("Samsung")
+
+	link = contain.a['href']
+	img_src = contain.img['src']
+
+	name = contain.div.a.img['alt']
+
+	price_container = contain.findAll("div",{"class":"price-desc"})
+	price = price_container[0].text.strip()# why is this here
+	try:
+		present, past = price.split()
+	except:
+		present = price
+
+	parameter= re.split(r'[^\w]',name, re.I| re.M)
+	parameter= ''.join(parameter)
+	parameter= str.lower(parameter)
+	parameter= re.split(r'[^\w]',parameter, re.I| re.M)
+	parameter= ''.join(parameter)
+		
+
+
+	s = name.replace('-',' ')
+	r = s.split()
+	for i in r:
+		if i==product_keyword:			
+		 cur.execute("""INSERT OR IGNORE INTO muncha(link, name, price, image, parameter)
+		 VALUES(?,?,?,?,?)""", [link, name, present, img_src,parameter]);
+		 '''print('link '+ link + '\n')
+		 print('image ' + img_src+ '\n')
+		 print('name '+ name+ '\n')
+		 print('price ' + present+ '\n')'''
+		 conn.commit()
+		 print ("records added")
+	#conn.close() 
+	#f.write(link +',' + name.replace(',','| ') +',' +  price.replace(',',' ') + '\n')
+	conn.close()# use this for the last website
+	#MunchaScraper("dress")
+
+>>>>>>> aea7c186032fbd6d513bac2c34bce89ba07b4a5a
