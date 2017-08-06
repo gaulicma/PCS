@@ -12,10 +12,17 @@ body{
 	margin: auto;
 	overflow: hidden;
 }
+.container h1{
+	margin-top: 100px;
+	font-size : 55px;
+	margin-bottom:10px;
+}
 ul{
 	margin: 0;
 	padding: 0;
 }
+
+
 
 .button_1{
 	height:50px;
@@ -94,6 +101,36 @@ header a:hover{
 	font-weight:bold;
 }
 
+#website-logo img{
+	height:75px;
+	width:30%;
+}
+
+
+.press{
+	position: absolute;
+	
+}
+
+.press a:link, a:visited {
+    background-color:#e8491d ;
+    color: #ffffff;
+    padding: 14px 20px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+}
+
+.press a:hover, a:active {
+    background-color:#35424a;
+}
+
+.press li{
+	float: left;
+	display: inline;
+	padding: 0px 0px 0px 0px;
+}
+
 /*showcase*/
 #showcase{
 	min-height: 450px;
@@ -124,6 +161,8 @@ header a:hover{
 #user_search h1{
 	float:left;
 	font-size: 25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 #user_search form{
@@ -148,6 +187,9 @@ header a:hover{
 #search_search h1{
 	float:left;
 	font-size:25px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 25px;
 }
 
 #search_search form{
@@ -185,34 +227,65 @@ header a:hover{
 
 
 /*search page boxes */
-#site-boxes{
+.site-boxes{
+	align-content: center;
 	margin-top:20px;
-	background-color: #F0F8FF;
+	padding-top: 20px;
+	
+	position: relative;
+   padding-bottom: 60px;
    
 	
 }
 
 
-#site-boxes .box{
-	float:right;
-	width:30%;
-	padding:10px;
-	text-align: :center;
+.site-boxes1 , .site-boxes2, .site-boxes3{
+	align-content: center;
+	margin-top:70px;
+	padding-top: 20px;
+	height:700px;
+	overflow-y: scroll;
+	position: relative;
+   padding-bottom: 60px;
+   
 	
 }
-#site-boxes .site-box1{
+/*.site-boxes2{
+	align-content: center;
+	margin-top:70px;
+	padding-top: 20px;
+	height:1000px;
+	overflow-y: scroll;
+
+	position: relative;
+   padding-bottom: 60px;
+	
+
+}*/
+
+
+.site-boxes .box{
+	float:right;
+	width:22%;
+	padding:10px;
+	text-align: center;
+	background-color: #F0F8FF;
+	padding-bottom: 2000px;
+	
+}
+.site-boxes .site-box1{
 	 border-right:1px;
 	  padding:10px; 
 	 width:22%; 
 	 height:700px;
 	 float:left; 
-	 position:relative;
+	
 	 margin-left: 10px;
 	  margin-right: 10px;
 	  text-align: center;
 
 }
-#site-boxes .site-box2{
+.site-boxes .site-box2{
 	border-right:1px;
 	 width:22%;
 	 height:700px;
@@ -221,21 +294,20 @@ header a:hover{
 	  float:left;
 	  margin-left: 10px;
 	  margin-right: 10px;
-	   position:relative;
-}
-#site-boxes .site-box3{
+	   }
+.site-boxes .site-box3{
 	text-align: center;
 	 border-right:1px;
 	 width:22%;
 	 height:700px;
 	  padding:10px;
 	  float:left;
-	   position:relative;
+
 	   margin-left: 10px;
 	  margin-right: 10px;
 
 }
-#site-boxes .site-box4{
+.site-boxes .site-box4{
 	text-align: center;
 
 	 border-right:1px;
@@ -243,11 +315,39 @@ header a:hover{
 	 height:700px;
 	  padding:10px;
 	  float:left;
-	   position:relative;
+
 
 	   margin-left: 10px;
 	  margin-right: 10px;
 	}
+
+.site-boxes1 .site-box1{
+	 border-right:1px;
+	  padding:10px; 
+	 width:22%; 
+	 height:700px;
+	 float:left; 
+	
+	 margin-left: 10px;
+	  margin-right: 10px;
+	  text-align: center;
+
+}
+.site-boxes2 .site-box2{
+	 border-right:1px;
+	  padding:10px; 
+	 width:22%; 
+	 height:700px;
+	 float:left; 
+	
+	 margin-left: 10px;
+	  margin-right: 10px;
+	  text-align: center;
+
+}
+/* for comparison page */
+
+
 
 
 

@@ -5,18 +5,18 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import requests
 import sqlite3
-
-
-#import mySQL 
-#
+import re
 
 
 
-#from kaymuscraper import KaymuScraper
-from munchaScraper import MunchaScraper
+
+
+
 from sastodeal import SastoDealScraper
 from nepbayScraper import NepbayScraper
-from meroshoppingScraper import MeroShoppingScraper
+
+from Muncha import MunchaDynamicScraper
+from bhatbhateni import BhatbhateniScraper
 
 
 app = Flask(__name__)
@@ -70,18 +70,20 @@ def search():
 	
 	product_keyword = request.form['Product']
 	print(product_keyword)
-	#KaymuScraper(product_keyword)
-	MunchaScraper(product_keyword)
-	NepbayScraper(product_keyword)
-	SastoDealScraper(product_keyword)
-	MeroShoppingScraper(product_keyword)
-	
+
+
+	#MunchaDynamicScraper(product_keyword)
+	#NepbayScraper(product_keyword)
+	#SastoDealScraper(product_keyword)
+	#BhatbhateniScraper(product_keyword)
+
 
 	#make the comparison algorithm here
-	con = sqlite3.connect("test.db")
-	con.row_factory = sqlite3.Row
+	conn = sqlite3.connect("test.db")
+	
+	conn.row_factory = sqlite3.Row
 
-	cur = con.cursor()
+	cur = conn.cursor()
 	cur.execute("select * from muncha")
 
 	rows = cur.fetchall();
@@ -92,36 +94,102 @@ def search():
 	cur.execute("select * from sastodeal")
 	rowsSD = cur.fetchall();
 
-	cur.execute("select * from meroshopping")
-	rowsMS = cur.fetchall();
-	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD, rowsMS = rowsMS)
 
-	#do for mero shopping
-
-'''@app.route('/message', methods = ['GET','POST'])
-def message():
-	if request.method == 'POST':
-		conn = sqlite3.connect('test.db')
-		cur = conn.cursor()
-		#cur.execute(CREATE TABLE IF NOT EXISTS message(
-		name CHAR(50),
-		email CHAR(255),
-		message CHAR(255)
-		)
-		name = request.form['contacter_name'] 
-		email = request.form['contacter_email']
-		message = request.form['contacter_message']
-
-		if name():
-			cur.execute(INSERT INTO message(name,emai,message)
-				VALUES(?,?,?), [name,email,message]);
-			cur.commit()
-			return redirect(url_for('thank.html'))
-	return render_template('another.html')
-
-'''
+	cur.execute("select * from bhatbhateni")
+	rowsBB = cur.fetchall();
+	return render_template('search.html', rows = rows, rowsNB = rowsNB, rowsSD = rowsSD, rowsBB = rowsBB)
 
 
+
+
+@app.route('/compare', methods = ['POST','GET'])
+def compare():
+	conn  = sqlite3.connect("test.db")
+	conn.row_factory = sqlite3.Row
+	cur = conn.cursor()
+
+	#cur.execute('''select * from muncha natural join NepBay 
+	#where muncha.parameter = NepBay.p_NB''')
+
+	#for all 4
+	cur.execute("""
+		create view if not exists fourSNMB as
+		select * from NepBay natural join muncha natural join bhatbhateni  natural join sastodeal
+ 		where
+ 		NepBay.p_NB = muncha.parameter
+ 		and NepBay.p_NB = bhatbhateni.p_BB
+ 		and muncha.parameter = bhatbhateni.p_BB
+ 		and NepBay.p_NB = sastodeal.parameter_SD
+ 		and muncha.parameter = sastodeal.parameter_SD
+ 		and bhatbhateni.p_BB = sastodeal.parameter_SD""")
+	cur.execute("select * from fourSNMB")
+	rows_all_four = cur.fetchall();
+
+	# for 3
+	cur.execute("""
+		create view if not exists threeNMB as
+		select * from NepBay natural join muncha natural join bhatbhateni
+ 		where
+ 		NepBay.p_NB = muncha.parameter
+ 		and NepBay.p_NB = bhatbhateni.p_BB
+ 		and muncha.parameter = bhatbhateni.p_BB""")
+	cur.execute("select * from threeNMB")
+	rows = cur.fetchall();
+
+	# for muncha and nepbay
+	cur.execute("""
+		create view if not exists twoMN as
+	select * from NepBay natural join muncha
+	where NepBay.p_NB = muncha.parameter""")
+	cur.execute("select * from twoMN")
+	rows2 = cur.fetchall();
+
+	#for nepbay and bhathateni
+	cur.execute("""
+		create view if not exists twoNB as
+		select * from NepBay natural join bhatbhateni
+		where NepBay.p_NB = bhatbhateni.p_BB""")
+	cur.execute("select * from twoNB")
+	rowsNB = cur.fetchall()
 	
+	
+	#for muncha and bhatbheteni
+	cur.execute("""
+		create view if not exists twoMB as
+		select * from muncha natural join bhatbhateni
+		where muncha.parameter = bhatbhateni.p_BB""")
+	cur.execute("select * from twoMB")
+	rowsMB = cur.fetchall()
+
+	#for sastodeal and nepbay
+	cur.execute("""
+		create view if not exists twoSN as
+		select * from sastodeal natural join NepBay
+		where sastodeal.parameter_SD = NepBay.p_NB""")
+	cur.execute("select * from twoSN")
+	rowsSN = cur.fetchall()
+
+	#for sastodeal and muncha
+	cur.execute("""
+		create view if not exists twoSM as
+		select * from sastodeal natural join muncha
+		where sastodeal.parameter_SD = muncha.parameter""")
+	cur.execute("select * from twoSM")
+	rowsSM = cur.fetchall()
+
+	#for sastodeal and bhatbhateni
+	cur.execute("""
+		create view if not exists twoSB as
+		select * from sastodeal natural join bhatbhateni
+		where sastodeal.parameter_SD = bhatbhateni.p_BB""")
+	cur.execute("select * from twoSB")
+	rowsSB = cur.fetchall()
+
+
+
+	return render_template('compare.html', rows_all_four = rows_all_four, rows = rows, rows2 = rows2, rowsNB = rowsNB, rowsMB = rowsMB, rowsSN = rowsSN, rowsSM = rowsSM, rowsSB = rowsSB)
+
+
 if __name__ =='__main__':
+
 	app.run(debug=True)

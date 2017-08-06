@@ -42,8 +42,8 @@ def SastoDealScraper(product_keyword):
 	#changed xpaths
 
 	containers = page_soup.findAll("section",{"class":"categoryProduct category-product categorytDetailDiv "})
-
-
+  
+	
 	for container in containers:
 
 		image_SD = container.a.img["src"]
@@ -51,7 +51,9 @@ def SastoDealScraper(product_keyword):
 		price_SD = container.span.text.replace('?','Rs.')
 		title_container =  title_container = container.findAll('a',{"class":'title'})
 		name_SD = title_container[0].text.strip()
-		parameter_SD= re.split(r'[^\w]',name_SD, re.I| re.M)
+		a= name_SD
+		parameter_SD=re.sub(r'\(.+?\)\a*', '', a)
+		parameter_SD= re.split(r'[^\w]',parameter_SD, re.I| re.M)
 		parameter_SD= ''.join(parameter_SD)
 		parameter_SD= str.lower(parameter_SD)
 		parameter_SD= re.split(r'[^\w]',parameter_SD, re.I| re.M)

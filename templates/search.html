@@ -35,12 +35,22 @@
 	</section>
 
 
+	<div class = 'container'>
+	<div class="press"><h2><a href ="compare">Compared Results</a></h2></div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<hr>
+
+
 	<h1>List of products</h1>
-	<section id = "site-boxes">
+	<section class = "site-boxes">
 
 		<div class = "containers">
 			<div class = "site-box1">
-			<h3> Muncha</h3>
+			<h3><a id = "website-logo" href = "https://www.muncha.com"><img src = "{{url_for('static',filename='muncha-logo.png')}}" alt = " Muncha"></a></h3>
 				{% for row in rows %}
 				 <ul id = "individual_items">
 					<li><a href = "{{row["link"]}}"><img src ="{{row["image"]}}"></a></li>
@@ -53,7 +63,7 @@
 			</div>
 
 			<div class = "site-box2">
-				<h3> Nepbay</h3>
+				<h3><a id = "website-logo" href = "https://www.nepbay.com"><img src = "{{url_for('static',filename = 'beta-logo.svg')}}" alt = "Nepbay"></a></h3>
 				{% for row in rowsNB %}
 				<ul id = "individual_items">
 					<li><a href ="{{row["link_NB"]}}"><img src = "{{row["image_NB"]}}"></a></li>
@@ -66,7 +76,7 @@
 			</div>
 
 			<div class = "site-box3">
-				<h3> Sastodeal</h3>
+				<h3><a id = "website-logo" href = "https://www.sastodeal.com"><img src = "{{url_for('static',filename = 'sastodeal.png')}}" alt = "Sastodeal"></a></h3>
 				{% for row in rowsSD %}
 				<ul id = "individual_items">
 					<li><a href ="{{row["link_SD"]}}"><img src = "{{row["image_SD"]}}"></a></li>
@@ -79,13 +89,13 @@
 			</div>
 
 			<div class = "site-box4">
-				<h3> MeroShopping</h3>
-				{% for row in rowsMS %}
+				<h3><a id = "website-logo" href = "https://bhatbhatenionline.com"><img src = "{{url_for('static',filename = 'bhatbhateni.png')}}" alt = "Bhatbhateni"></a></h3>
+				{% for row in rowsBB %}
 				<ul id = "individual_items">
-					<li><a href ="{{row["link_MS"]}}"><img src = "{{row["image_MS"]}}"></a></li>
-					<li>{{row["name_MS"]}}</li>
-					<li><span class = "hilight">{{row["price_MS"]}}</span></li>
-					<li><a href = "{{row["link_MS"]}}">
+					<li><a href ="{{row["link_BB"]}}"><img src = "{{row["image_BB"]}}"></a></li>
+					<li>{{row["name_BB"]}}</li>
+					<li><span class = "hilight">{{row["price_BB"]}}</span></li>
+					<li><a href = "{{row["link_BB"]}}">
 					<button type = "button" class = "button_2">Buy</button></a></li>
 				</ul>
 				{%endfor%}

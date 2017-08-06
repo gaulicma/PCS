@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Compare produts among various Nepali E-commercial sites">
+    <meta name="keywords" content="E-commercial, Shop Online, Online shops">
+    <meta name="authors" content="Suravi Regmi, Seema Gauli, Shradha Neupane">
+    <title>PRODUCT COMPARISON SYSTEM | WELCOME</title>
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1>Product <span class="highlight">Comparison </span>System</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="current"><a href="home.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="another.html">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="search_search">
+        <div class="container">
+            <h1>Search Again</h1>
+            <form action="{{url_for('search')}}" method="POST">
+                <input type="text" name="Product">
+                <button type="submit" class="button_2">Search</button>
+
+            </form>
+        </div>
+    </section>
+
+    <!--3 -->
+    
+    <section class = "press" id = "NMB">
+    	<ul>
+    		<li><a href = "#4">All Websites</a></li>
+    		<li><a href = "#NMB">NepBay Muncha Bhatbhateni</a></li>
+    		<li><a href = "#NM">NepBay Muncha</a></li>
+    		<li><a href = "#NB">NepBay Bhatbhateni</a></li>
+    		<li><a href = "#MB">Muncha Bhatbhateni</a></li>
+    		<li><a href = "#SN">Sastodeal NepBay</a></li>
+    		<li><a href = "#SM">Sastodeal Muncha</a></li>
+    		<li><a href = "#SB">Sastodeal Bhatbhateni</a></li>
+		</ul>
+	</section>
+
+    <section class="site-boxes1">
+
+        <div class="containers">
+            <div class="site-box1">
+
+               {% for row in rows %}
+               <ul id="individual_items">
+                    <li><a href="{{row["link_NB"]}}"><img src ="{{row["image_NB"]}}"></a></li>
+                    <li>{{row["name_NB"]}}</li>
+                    <li><span class="hilight">{{row["price_NB"]}}</span></li>
+                    <li><a href="{{row["link_NB"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+            <div class="site-box1">
+            
+                {% for row in rows %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link0"]}}"><img src ="{{row["image"]}}"></a></li>
+                    <li>{{row["name"]}}</li>
+                    <li><span class="hilight">{{row["price"]}}</span></li>
+                    <li><a href="{{row["link"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+            <div class="site-box1">
+            
+                {% for row in rows %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_BB"]}}"><img src ="{{row["image_BB"]}}"></a></li>
+                    <li>{{row["name_BB"]}}</li>
+                    <li><span class="hilight">{{row["price_BB"]}}</span></li>
+                    <li><a href="{{row["link_BB"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    
+
+    <br>
+    <br>
+    <hr>
+    <section class = "press" id = "NM">
+    	<ul>
+    		<li><a href = "#4">All Websites</a></li>
+    		<li><a href = "#NMB">NepBay Muncha Bhatbhateni</a></li>
+    		<li><a href = "#NM">NepBay Muncha</a></li>
+    		<li><a href = "#NB">NepBay Bhatbhateni</a></li>
+    		<li><a href = "#MB">Muncha Bhatbhateni</a></li>
+    		<li><a href = "#SN">Sastodeal NepBay</a></li>
+    		<li><a href = "#SM">Sastodeal Muncha</a></li>
+    		<li><a href = "#SB">Sastodeal Bhatbhateni</a></li>
+		</ul>
+	</section>
+   
+
+    <!--two-->
+    <section class="site-boxes2" >
+
+        <div class="containers">           
+
+            <div class="site-box2">
+                
+                {% for row in rows2 %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_NB"]}}"><img src ="{{row["image_NB"]}}"></a></li>
+                    <li>{{row["name_NB"]}}</li>
+                    <li><span class="hilight">{{row["price_NB"]}}</span></li>
+                    <li><a href="{{row["link_NB"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+            <div class="site-box2">
+            
+                {% for row in rows2 %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link"]}}"><img src ="{{row["image"]}}"></a></li>
+                    <li>{{row["name"]}}</li>
+                    <li><span class="hilight">{{row["price"]}}</span></li>
+                    <li><a href="{{row["link"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!--2 nepbay and bhatbhateni-->
+    <br>
+    <br>
+    <hr>
+    <section class = "press" id = "NB">
+    	<ul>
+    		<li><a href = "#4">All Websites</a></li>
+    		<li><a href = "#NMB">NepBay Muncha Bhatbhateni</a></li>
+    		<li><a href = "#NM">NepBay Muncha</a></li>
+    		<li><a href = "#NB">NepBay Bhatbhateni</a></li>
+    		<li><a href = "#MB">Muncha Bhatbhateni</a></li>
+    		<li><a href = "#SN">Sastodeal NepBay</a></li>
+    		<li><a href = "#SM">Sastodeal Muncha</a></li>
+    		<li><a href = "#SB">Sastodeal Bhatbhateni</a></li>
+		</ul>
+	</section>
+    
+    <section class="site-boxes2" >  	
+
+        <div class="containers">            
+
+            <div class="site-box2">
+            	
+                {% for row in rowsNB %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_NB"]}}"><img src ="{{row["image_NB"]}}"></a></li>
+                    <li>{{row["name_NB"]}}</li>
+                    <li><span class="hilight">{{row["price_NB"]}}</span></li>
+                    <li><a href="{{row["link_NB"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+            <div class="site-box2">
+            
+                {% for row in rowsNB %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_BB"]}}"><img src ="{{row["image_BB"]}}"></a></li>
+                    <li>{{row["name_BB"]}}</li>
+                    <li><span class="hilight">{{row["price_BB"]}}</span></li>
+                    <li><a href="{{row["link_BB"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!--2 mincha and bhatbhateni-->
+    <br>
+    <br>
+    <hr>
+    <section class = "press" id = "MB">
+    	<ul>
+    		<li><a href = "#4">All Websites</a></li>
+    		<li><a href = "#NMB">NepBay Muncha Bhatbhateni</a></li>
+    		<li><a href = "#NM">NepBay Muncha</a></li>
+    		<li><a href = "#NB">NepBay Bhatbhateni</a></li>
+    		<li><a href = "#MB">Muncha Bhatbhateni</a></li>
+    		<li><a href = "#SN">Sastodeal NepBay</a></li>
+    		<li><a href = "#SM">Sastodeal Muncha</a></li>
+    		<li><a href = "#SB">Sastodeal Bhatbhateni</a></li>
+		</ul>
+	</section>
+
+
+    <section class="site-boxes2">
+
+        <div class="containers">
+
+
+            
+
+            <div class="site-box2">
+            
+                {% for row in rowsMB %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link"]}}"><img src ="{{row["image"]}}"></a></li>
+                    <li>{{row["name"]}}</li>
+                    <li><span class="hilight">{{row["price"]}}</span></li>
+                    <li><a href="{{row["link"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+            <div class="site-box2">
+               
+                {% for row in rowsMB %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_BB"]}}"><img src ="{{row["image_BB"]}}"></a></li>
+                    <li>{{row["name_BB"]}}</li>
+                    <li><span class="hilight">{{row["price_BB"]}}</span></li>
+                    <li><a href="{{row["link_BB"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!--for all 4-->
+    
+    <section class = "press" id = "4">
+    	<ul>
+    		<li><a href = "#4">All Websites</a></li>
+    		<li><a href = "#NMB">NepBay Muncha Bhatbhateni</a></li>
+    		<li><a href = "#NM">NepBay Muncha</a></li>
+    		<li><a href = "#NB">NepBay Bhatbhateni</a></li>
+    		<li><a href = "#MB">Muncha Bhatbhateni</a></li>
+    		<li><a href = "#SN">Sastodeal NepBay</a></li>
+    		<li><a href = "#SM">Sastodeal Muncha</a></li>
+    		<li><a href = "#SB">Sastodeal Bhatbhateni</a></li>
+		</ul>
+	</section>
+
+    <section class="site-boxes3" >
+
+        <div class="containers">
+            <div class="site-box1">
+            
+                {% for row in rows_all_four %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link"]}}"><img src ="{{row["image"]}}"></a></li>
+                    <li>{{row["name"]}}</li>
+                    <li><span class="hilight">{{row["price"]}}</span></li>
+                    <li><a href="{{row["link"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+
+            <div class="site-box1">
+            
+                {% for row in rows_all_four %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_NB "]}}"><img src = "{{row["image_NB"]}}"></a></li>
+                    <li>{{row["name_NB"]}}</li>
+                    <li><span class="hilight">{{row["price_NB"]}}</span></li>
+                    <li><a href="{{row["link_NB "]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {%endfor%}
+            </div>
+
+            <div class="site-box3">
+            
+                {% for row in rows_all_four %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_SD"]}}"><img src = "{{row["image_SD"]}}"></a></li>
+                    <li>{{row["name_SD"]}}</li>
+                    <li><span class="hilight">{{row["price_SD"]}}</span></li>
+                    <li><a href="{{row["link_SD "]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {%endfor%}
+            </div>
+
+            <div class="site-box4">
+            
+                {% for row in rows_all_four %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_BB "]}}"><img src = "{{row["image_BB"]}}"></a></li>
+                    <li>{{row["name_BB"]}}</li>
+                    <li><span class="hilight">{{row["price_BB"]}}</span></li>
+                    <li><a href="{{row["link_BB "]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {%endfor%}
+            </div>
+
+        </div>
+    </section>
+
+    <!--2 sasto and bhatbhateni-->
+    <br>
+    <br>
+    <hr>
+    <section class = "press" id = "SB">
+    	<ul>
+    		<li><a href = "#4">All Websites</a></li>
+    		<li><a href = "#NMB">NepBay Muncha Bhatbhateni</a></li>
+    		<li><a href = "#NM">NepBay Muncha</a></li>
+    		<li><a href = "#NB">NepBay Bhatbhateni</a></li>
+    		<li><a href = "#MB">Muncha Bhatbhateni</a></li>
+    		<li><a href = "#SN">Sastodeal NepBay</a></li>
+    		<li><a href = "#SM">Sastodeal Muncha</a></li>
+    		<li><a href = "#SB">Sastodeal Bhatbhateni</a></li>
+		</ul>
+	</section>
+
+    <section class="site-boxes2">
+
+        <div class="containers">
+            
+             <div class="site-box2">
+            
+                {% for row in rowsSB %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_SD"]}}"><img src ="{{row["image_SD"]}}"></a></li>
+                    <li>{{row["name_SD"]}}</li>
+                    <li><span class="hilight">{{row["price_SD"]}}</span></li>
+                    <li><a href="{{row["link_SD"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+               </ul>
+                {% endfor %}
+            </div>
+            <div class="site-box2">
+            
+                {% for row in rowsSB %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_BB"]}}"><img src ="{{row["image_BB"]}}"></a></li>
+                    <li>{{row["name_BB"]}}</li>
+                    <li><span class="hilight">{{row["price_BB"]}}</span></li>
+                    <li><a href="{{row["link_BB"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+     <!--2 sasto and muncha-->
+     <br>
+    <br>
+    <hr>
+    <section class = "press" id = "SM">
+    	<ul>
+    		<li><a href = "#4">All Websites</a></li>
+    		<li><a href = "#NMB">NepBay Muncha Bhatbhateni</a></li>
+    		<li><a href = "#NM">NepBay Muncha</a></li>
+    		<li><a href = "#NB">NepBay Bhatbhateni</a></li>
+    		<li><a href = "#MB">Muncha Bhatbhateni</a></li>
+    		<li><a href = "#SN">Sastodeal NepBay</a></li>
+    		<li><a href = "#SM">Sastodeal Muncha</a></li>
+    		<li><a href = "#SB">Sastodeal Bhatbhateni</a></li>
+		</ul>
+	</section>
+
+    <section class="site-boxes2">
+
+        <div class="containers">
+            
+             <div class="site-box2">
+            
+                {% for row in rowsSM %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_SD"]}}"><img src ="{{row["image_SD"]}}"></a></li>
+                    <li>{{row["name_SD"]}}</li>
+                    <li><span class="hilight">{{row["price_SD"]}}</span></li>
+                    <li><a href="{{row["link_SD"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+               </ul>
+                {% endfor %}
+            </div>
+            <div class="site-box2">
+            
+                {% for row in rowsSM %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link"]}}"><img src ="{{row["image"]}}"></a></li>
+                    <li>{{row["name"]}}</li>
+                    <li><span class="hilight">{{row["price"]}}</span></li>
+                    <li><a href="{{row["link"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!--2 sasto and nepbay-->
+    <br>
+    <br>
+    <hr>
+    <section class = "press" id = "SN">
+    	<ul>
+    		<li><a href = "#4">All Websites</a></li>
+    		<li><a href = "#NMB">NepBay Muncha Bhatbhateni</a></li>
+    		<li><a href = "#NM">NepBay Muncha</a></li>
+    		<li><a href = "#NB">NepBay Bhatbhateni</a></li>
+    		<li><a href = "#MB">Muncha Bhatbhateni</a></li>
+    		<li><a href = "#SN">Sastodeal NepBay</a></li>
+    		<li><a href = "#SM">Sastodeal Muncha</a></li>
+    		<li><a href = "#SB">Sastodeal Bhatbhateni</a></li>
+		</ul>
+	</section>
+    <section class="site-boxes2" >
+
+        <div class="containers">
+             <div class="site-box2">
+            
+                {% for row in rowsSN %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_SD"]}}"><img src ="{{row["image_SD"]}}"></a></li>
+                    <li>{{row["name_SD"]}}</li>
+                    <li><span class="hilight">{{row["price_SD"]}}</span></li>
+                    <li><a href="{{row["link_SD"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+               </ul>
+                {% endfor %}
+            </div>
+            <div class="site-box2">
+            
+                {% for row in rowsSN %}
+                <ul id="individual_items">
+                    <li><a href="{{row["link_NB"]}}"><img src ="{{row["image_NB"]}}"></a></li>
+                    <li>{{row["name_NB"]}}</li>
+                    <li><span class="hilight">{{row["price_NB"]}}</span></li>
+                    <li><a href="{{row["link_NB"]}}">
+					<button type = "button" class = "button_2">Buy</button></a></li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <footer>
+        <p>Product Comparison System, Copyright &copy; 2017</p>
+    </footer>
+
+</body>
+
+</html>

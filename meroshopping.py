@@ -1,18 +1,17 @@
-
-from __main__ import *
-
+import sys
+from PyQt4.QtGui import QApplication
+from PyQt4.QtCore import QUrl
+from PyQt4.QtWebKit import QWebPage
 import sqlite3
-import re
-
-from urllib.request import urlopen as uReq
+from __main__ import *
 from bs4 import BeautifulSoup as soup
+import urllib.request
 
-def MeroShoppingScraper(product_keyword):
+
+def MeroShoppingDynamicScraper(product_keyword):
 
 	conn = sqlite3.connect('test.db')
 	cur = conn.cursor()
-	
-
 	cur.execute('''CREATE TABLE IF NOT EXISTS meroshopping(
 		link_MS CHAR(255) NOT NULL,
 		name_MS CHAR(255) PRIMARY KEY,
@@ -22,8 +21,7 @@ def MeroShoppingScraper(product_keyword):
 		)''')
 	cur.execute('DELETE FROM meroshopping')
 
-
-	print('mero shoping \n\n\n')
+	print('Meroshooping')
 
 	key = product_keyword.split()
 	lenkey = len(key)
@@ -31,14 +29,28 @@ def MeroShoppingScraper(product_keyword):
 	for i in range(1,lenkey):
 		added = added+'+'+key[i]
 
-	my_url = 'https://www.meroshopping.com/search/'+ added
-	uClient = uReq(my_url)
-	page_html = uClient.read()
-	uClient.close()
 
-	page_soup = soup(page_html,'html.parser')
-	containers = page_soup.findAll('div',{'class':'col-xs-6 col-md-4 col-lg-3 filtr-item'})
+	class Client(QWebPage):
+		def __init__(self, url):
+			self.app = QApplication(sys.argv)
+			QWebPage.__init__(self)
+			self.loadFinished.connect(self.on_page_load)
+			self.mainFrame().load(QUrl(url))
+			self.app.exec_()
 
+		def on_page_load(self):
+			self.app.quit()
+
+	
+
+	url = "https://www.meroshopping.com/search/"+ added
+	client_response = Client(url)
+	source = client_response.mainFrame().toHtml()
+
+	
+
+	page_soup = soup(source,'html.parser')
+	containers = page_soup.findAll('div',class_='col-xs-6 col-md-4 col-lg-3 filtr-item')
 	for container in containers:
 		name_MS = container.div.div.text.strip()
 		link_MS = 'https://www.meroshopping.com/'+container.a["href"]
@@ -60,3 +72,8 @@ def MeroShoppingScraper(product_keyword):
 	conn.close()
 
 
+
+
+
+
+		
