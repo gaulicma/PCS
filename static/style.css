@@ -101,10 +101,14 @@ header a:hover{
 	font-weight:bold;
 }
 
+#website-logo img{
+	height:75px;
+	width:30%;
+}
+
 
 .press{
 	position: absolute;
-
 	
 }
 
@@ -120,6 +124,7 @@ header a:hover{
 .press a:hover, a:active {
     background-color:#35424a;
 }
+
 .press li{
 	float: left;
 	display: inline;
@@ -224,27 +229,28 @@ header a:hover{
 /*search page boxes */
 .site-boxes{
 	align-content: center;
-	margin-top:70px;
+	margin-top:20px;
 	padding-top: 20px;
-	height:1000px;
-	overflow-y: scroll;
+	
 	position: relative;
    padding-bottom: 60px;
    
 	
 }
-.site-boxes1{
+
+
+.site-boxes1 , .site-boxes2, .site-boxes3{
 	align-content: center;
 	margin-top:70px;
 	padding-top: 20px;
-	height:1000px;
+	height:700px;
 	overflow-y: scroll;
 	position: relative;
    padding-bottom: 60px;
    
 	
 }
-.site-boxes2{
+/*.site-boxes2{
 	align-content: center;
 	margin-top:70px;
 	padding-top: 20px;
@@ -255,7 +261,7 @@ header a:hover{
    padding-bottom: 60px;
 	
 
-}
+}*/
 
 
 .site-boxes .box{
